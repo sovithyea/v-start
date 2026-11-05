@@ -110,7 +110,7 @@ Replace the placeholders:
 | `{{DONE}}`, `{{DEADLINE}}`, `{{PRIORITY}}` | From round 1c |
 | `{{EXPERIENCE}}`, `{{QUESTION_STYLE}}`, `{{REPLY_LENGTH}}`, `{{AUTONOMY}}` | From round 0, in `CLAUDE.local.md` |
 
-Check: `grep -rnE --exclude-dir=node_modules --exclude-dir=.git '(^|[^$])\{\{' <target>` prints nothing. It flags any `{{` not after a `$`, so GitHub's `${{ … }}` is expected and isn't matched. Keep the pattern this short: inside Claude Code, `grep` runs ugrep, which misses matches with longer versions of it.
+Check: `command grep -rnE --exclude-dir=node_modules --exclude-dir=.git '(^|[^$])\{\{[^}]*\}\}' <target>` prints nothing. GitHub's `${{ … }}` is expected and isn't matched. Keep `command`: inside Claude Code, plain `grep` is a shell function that runs ugrep, and ugrep matches nothing with this pattern.
 
 Then:
 

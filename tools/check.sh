@@ -5,7 +5,7 @@ set -euo pipefail
 root="${1:-.}"
 skill="$root/skills/v-start"
 fail=0
-leftover='(^|[^$])\{\{'   # any {{ not after a $; GitHub's ${{ … }} is expected. Same pattern as SKILL.md step 4
+leftover='(^|[^$])\{\{[^}]*\}\}'   # any {{…}}; GitHub's ${{ … }} is expected
 
 # 2. Fill the templates and add-ons the way /v-start does, with every placeholder from SKILL.md's
 #    fill table, and fail if any {{…}} is left.
@@ -21,6 +21,9 @@ done
 if grep -rnE "$leftover" "$tmp"; then
   echo "placeholders above aren't in the fill table in skills/v-start/SKILL.md, so /v-start would leave them"; fail=1
 fi
+# The skill's own check must call `command grep`: inside Claude Code, plain grep runs ugrep, which misses every match (C4).
+grep -qF "Check: \`command grep -rnE --exclude-dir=node_modules --exclude-dir=.git '$leftover'" "$skill/SKILL.md" ||
+  { echo "SKILL.md step 4 must check with \`command grep\` and the same pattern as check.sh (C4)"; fail=1; }
 
 # 3. Every bundled skill v-start didn't write is credited in THIRD_PARTY.md, by its exact path.
 ours="v-start v-discover v-spec ios-simulator"   # first-party skills; add new ones here
