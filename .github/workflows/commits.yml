@@ -1,0 +1,33 @@
+# Conventional Commits on every PR: each commit subject, and the PR title (a squash-merge
+# makes the title the commit on main). A convention nobody checks drifts.
+name: commits
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  conventional:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: commit subjects and PR title
+        env:
+          # Passed through env, never interpolated into the script: a PR title is untrusted input.
+          TITLE: ${{ github.event.pull_request.title }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          re='^(feat|fix|docs|chore|refactor|test|perf|build|ci|style|revert)(\([a-z0-9._/-]+\))?!?: .+'
+          bad=0
+          while IFS= read -r s; do
+            case "$s" in Merge*|Revert\ \"*) continue ;; esac  # merge commits and git revert's default subject
+            if ! printf '%s\n' "$s" | grep -Eq "$re"; then echo "::error::not conventional: $s"; bad=1; fi
+          done < <(git log --format=%s "$BASE..$HEAD")
+          printf '%s\n' "$TITLE" | grep -Eq "$re" || { echo "::error::PR title not conventional: $TITLE"; bad=1; }
+          exit $bad

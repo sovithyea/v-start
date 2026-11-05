@@ -69,6 +69,10 @@ It keeps up as you go:
 | agent-reach | Reading Reddit, X, YouTube and more | https://github.com/Panniantong/Agent-Reach |
 | treg | Live data APIs | https://treg.to/tutorial |
 
+## Working on v-start
+
+The rules for agents (and people) working on this repo are in [`CLAUDE.md`](CLAUDE.md), and where things stand is in [`docs/PROGRESS.md`](docs/PROGRESS.md). v-start uses its own harness.
+
 ## Change it
 
 The templates are in `skills/v-start/templates/`. When you add a lesson to `references/addons.md`, name the project it came from. Third-party credits are in `THIRD_PARTY.md`.
