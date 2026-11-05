@@ -20,8 +20,9 @@ The only current record of where things stand. Update it at the end of every wor
 
 - An Agensi.io email offered to list v-start's skills. Advice given: wait until #3 passes. Nothing decided or recorded.
 - Reviewed how to improve the skill. Four issues are on the board: #5 ask before installs, #6 remove private context, #7 behaviour tests in CI (needs Vith's yes on cost), #8 plugin icon (Vith picks).
-- **#5:** D004 replaces D003's auto-install line. `/v-start` now asks (multiSelect) which missing tools to install. gstack is pinned to `v1.91.242.0`. Version 0.4.2.
-- Headless trial passed (see VERIFIED). The trial's own permission limits stopped it checking which tools were already installed, so it offered all three. That's the trial setup, not the skill.
+- **#5:** D004 replaces D003's auto-install line. `/v-start` now asks (multiSelect) which missing tools to install. gstack is pinned to `v1.96.0.0` and its commit. `check.sh` now checks D004 (see CLAUDE.md guarantee 4). Version 0.4.2.
+- `/code-review medium` on PR #9 found 8 issues. Fixed: the VERIFIED and PROGRESS wording, install nothing when it can't ask, a duplicate report line, the tag check, the text check, and the newest release pinned by commit. Skipped: where D003's Status line sits (rule 4 is met), and gstack's detached HEAD (no harm seen).
+- Headless trial: no install call, and it asked instead (see VERIFIED). Not tested: the skip-if-present step (the trial's permissions blocked it) and a person picking "None" or some tools.
 - **Next:** Vith reviews and merges the #5 PR. Then #6.
 
 ### 5 Nov 2026 — v-start built, released and used on itself (Vith)

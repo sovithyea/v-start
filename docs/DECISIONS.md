@@ -46,6 +46,6 @@ v-start ships as a plugin from `sovithyea/v-start`, installed with `/plugin mark
 
 *6 Nov 2026 · Vith*
 
-`/v-start` asks (multiSelect MCQ) which missing companion tools to install, and installs only those. gstack is pinned to a release tag (`v1.91.242.0`), not its latest commit. This replaces D003's "install automatically" line.
+`/v-start` asks (multiSelect MCQ) which missing companion tools to install, and installs only those. gstack is pinned to its newest release, `v1.96.0.0`, and the clone is checked against that release's commit (`6666b7296766`), so a moved tag can't slip through. This replaces D003's "install automatically" line.
 
-**Why:** v-start is public (D002). Installing without asking runs other people's code, including gstack's `./setup` script, on a stranger's machine without their say. Pinning means a new upstream commit can't change what our users run until we bump it in a PR. Raised while reviewing how to improve the skill (#5).
+**Why:** v-start is public (D002). Installing without asking runs other people's code, including gstack's `./setup` script, on a stranger's machine without their say. Pinning means nothing upstream can change what our users run until we bump it in a PR. The newest release was chosen over the oldest because release age alone says nothing about which one is safer. Raised while reviewing how to improve the skill (#5).

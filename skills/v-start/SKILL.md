@@ -124,11 +124,11 @@ Then:
 
 ## 5. Companion tools (ask first)
 
-Check which ones are already installed, and skip those. Ask about the rest in one multiSelect MCQ: "Which helper tools should I install?" Give one option per missing tool, saying what it's for and what it installs, plus "None". Install only what the user picks, once per machine:
+Check which ones are already installed, and skip those. Ask about the rest in one multiSelect MCQ: "Which helper tools should I install?" Give one option per missing tool, saying what it's for and what it installs, plus "None". Install only what the user picks, once per machine. If you can't ask (a headless run, or the question is blocked), install nothing and list the tools in the report:
 
 | Tool | Present if | Install |
 |---|---|---|
-| gstack | `~/.claude/skills/gstack` exists | `git clone --branch v1.91.242.0 --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack && (cd ~/.claude/skills/gstack && ./setup)` (needs Git and Bun; if Bun is missing, skip it and say so). Pinned to a release, so a new upstream commit can't change what users run |
+| gstack | `~/.claude/skills/gstack` exists | `git clone --branch v1.96.0.0 --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack && git -C ~/.claude/skills/gstack rev-parse HEAD | grep -qx 6666b7296766f8e0c9f3cc44b70fd1eff6ad2e92 && (cd ~/.claude/skills/gstack && ./setup)` (needs Git and Bun; if Bun is missing, skip it and say so). Pinned to a release and its commit, so nothing upstream can change what users run. If the commit doesn't match, the tag was moved: delete the clone, don't run `./setup`, and tell the user |
 | impeccable | `claude plugin list` shows `impeccable@impeccable` | `claude plugin marketplace add pbakaus/impeccable && claude plugin install impeccable@impeccable` |
 | ponytail | `claude plugin list` shows `ponytail@ponytail` | `claude plugin marketplace add DietrichGebert/ponytail && claude plugin install ponytail@ponytail` |
 
@@ -154,8 +154,6 @@ A table of the files created or merged, the add-ons applied, and what's `TBD` an
 - **`/v-discover`** (Recommended when there's an existing system, data or a client to learn from): week 0 research, VERIFIED facts, and mocks for stakeholders.
 - **`/v-spec`**: write spec 1 for approval.
 - Stop here.
-
-Also list the companion tools not yet installed (from the README).
 
 ## Principles (keep them when you adapt)
 
