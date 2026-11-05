@@ -23,6 +23,7 @@ Create or update the pull request for the current task with a concise descriptio
    - Ask the user to select a PR only when the current branch has no relevant work and there is no safe current-branch PR to create.
 
 3. Gather only the context needed to explain the change:
+   - Read `docs/PROFILE.md` if it exists. Write for the people it names as reviewers, at their level.
    - Read the issue the PR closes and the spec it implements, if any.
    - Read the complete PR diff and enough surrounding code to understand behavior and ownership.
    - Use `gh pr view` to collect PR metadata, changed files and the current body. Keep its evidence: don't drop a check someone already recorded.

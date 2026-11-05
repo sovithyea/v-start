@@ -11,6 +11,14 @@ Guidance for Claude Code (and every other agent) in this repo. Humans should sta
 
 **`docs/PROGRESS.md` is the only current record of where things stand.** Read its front section and the newest session-log entry before doing anything. If this file disagrees with PROGRESS, trust PROGRESS and fix this file.
 
+## Personalisation
+
+Read **`docs/PROFILE.md`** (this project: goals, deadline, what matters most, platforms, people) and **`CLAUDE.local.md`** (the person you're working with: their experience, question style, reply length, autonomy) before every task, and adapt to both. Preferences change *how* you work, never the hard rules.
+
+- **Learn from corrections.** When the person corrects how you work ("stop doing X", "always Y"), ask one multiple-choice question: save it for **just me** (`CLAUDE.local.md`, under Learned preferences), for **the whole project** (`CLAUDE.md` or `docs/PROFILE.md`, through a PR), or **don't save**. Record the date, their words, and how to apply it.
+- **Check in at milestones.** After a spec merges or a phase ships, ask 2–4 multiple-choice questions: are the goals still right, has the deadline moved, has what matters most changed, is the way we work still right? Update `docs/PROFILE.md` and add a line to its check-in log.
+- **Something big changed?** Run `/v-start` again. In a repo that already has the harness, it refreshes the profile instead of setting up again.
+
 ## Commands
 
 ```bash
@@ -21,6 +29,8 @@ Guidance for Claude Code (and every other agent) in this repo. Humans should sta
 
 | File | What it gives you |
 |---|---|
+| `docs/PROFILE.md` | The project's goals, deadline, priorities, platforms and people |
+| `CLAUDE.local.md` | How the person you're working with likes to work (gitignored) |
 | `docs/PROGRESS.md` | Where things stand, what's open, what's next |
 | `docs/DECISIONS.md` | Every settled call, append-only (D-numbers) |
 | `docs/VERIFIED.md` | Observed facts with sources, and the correction log (C-numbers) |
