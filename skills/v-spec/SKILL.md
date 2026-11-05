@@ -11,7 +11,7 @@ Turn one piece of work into a `spec.md` and a `plan.md` that the approver can sa
 
 ## 1. Read first
 
-`CLAUDE.md`, `docs/PROGRESS.md`, `docs/DECISIONS.md`, `docs/VERIFIED.md`, `docs/RISKS.md`, `specs/README.md`, and any existing spec this one depends on.
+`CLAUDE.md`, `docs/PROFILE.md` and `CLAUDE.local.md` (adapt to them: the experience level sets how much you explain, the priority sets the trade-offs, and the platforms set where things get checked), `docs/PROGRESS.md`, `docs/DECISIONS.md`, `docs/VERIFIED.md`, `docs/RISKS.md`, `specs/README.md`, and any existing spec this one depends on.
 
 ## 2. Ask (MCQ rounds)
 
@@ -39,4 +39,5 @@ Start from `specs/0-example/`.
 - Commit on a `docs/spec-N-<name>` branch, staging files by name: `docs(spec): N. <name> spec and plan`.
 - Open a PR only on the user's yes.
 - PROGRESS: "spec N drafted, waiting on the approver".
+- When this spec later merges, the check-in in `CLAUDE.md` (Personalisation) runs.
 - Report in a short table: the belief, the pass mark, the criteria count, and the open questions with who answers each one. **Then stop.** Building starts only after approval.

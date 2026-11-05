@@ -26,8 +26,18 @@ Check the target directory (the cwd unless the user names one): `git status`, `l
 
 - **Empty** → greenfield. `git init` if needed.
 - **Has code or docs** → adopt mode. Read the existing `CLAUDE.md`, `README.md` and the package manifest. **Never overwrite a file.** Merge the harness in, keep every existing rule, and show the user what you added.
+- **Already has the harness** (`docs/PROFILE.md` exists) → **refresh mode**. Don't copy the templates again. Read `docs/PROFILE.md`, `CLAUDE.local.md` and PROGRESS, then show a 5-line summary of the profile. Ask (multiSelect) what changed: me / goals and deadline / users, platforms and people / stack and add-ons. Re-ask only those rounds. Update the files in place, add a line to the check-in log, commit with the files staged by name (`docs: refresh the project profile`), and stop.
+- **The harness exists, but this person has no `CLAUDE.local.md`** (a new teammate) → run round 0 only and write their `CLAUDE.local.md`.
 
 ## 2. Interview (MCQ rounds)
+
+**Round 0: you** (saved to `CLAUDE.local.md`, just for this person)
+1. How much coding experience do you have? New to this / some projects / professional.
+2. How should I ask you things? Multiple choice (Recommended) / short chat questions.
+3. How long should my replies be? Short: tables and bullets (Recommended) / detailed reasoning.
+4. How much should I do before checking in? Stop at each milestone (Recommended) / ask before every step / work until done.
+
+Adapt from here on. A "new" person gets each next step explained in one plain line.
 
 **Round 1: the project**
 1. What is it? (Other → one sentence.)
@@ -37,6 +47,12 @@ Check the target directory (the cwd unless the user names one): `git status`, `l
 
 **Round 1b: reference projects**
 Find candidates first: `find .. a projects folder -maxdepth 3 -name CLAUDE.md 2>/dev/null`, and list the repos that hold one. Ask (multiSelect): which past repos should this one learn from? Offer the top 3 found, plus "none". The chosen repos go in `CLAUDE.md` under **Reference projects**, one line each: the path, and what it's the reference for. Read their `CLAUDE.md` hard rules, and offer any that fit as extra rules in round 2.
+
+**Round 1c: goals and platforms** (saved to `docs/PROFILE.md`)
+1. What does done look like for the first version? Other → one sentence. Offer 2–3 drafts based on round 1.
+2. Deadline? This week / this month / a date (Other) / no deadline.
+3. What matters most? Ship fast (Recommended for a first version) / get it right / learn while building. This sets the trade-offs agents make.
+4. Platforms (multiSelect): web / iPhone / Android / desktop / no UI.
 
 **Round 2: stack and risk**
 1. Stack: Next.js + Supabase + Vercel / Expo + Supabase / Python + uv / Node + TS, no build / decide later.
@@ -63,7 +79,7 @@ Anything unanswered stays visibly `TBD` and goes under **Open** in `docs/PRD.md`
 - **Tests use real fixtures, not mocks.**
 - **Specs** name the belief they test and a pass mark, and stay 1–3 pages.
 - **Docs for other people** go in Claude Docs; the repo copy stays the source of truth.
-- **Visual PRs** are the UI add-on only.
+- **Every PR** is written with `/v-start:visual-pr`. Screenshots and GIFs come with the UI add-on only.
 
 ## 4. Copy and fill
 
@@ -72,6 +88,8 @@ cp -Rn {SKILLBASE}/templates/. <target>/
 ```
 
 `-n` never clobbers. In adopt mode, merge by hand any template whose file already exists.
+
+Then turn the personal template into the real file: `[ -e CLAUDE.local.md ] && rm CLAUDE.local.template.md || mv CLAUDE.local.template.md CLAUDE.local.md`. The template has a different name because many people's global gitignore ignores `CLAUDE.local.md`, and that would keep it out of this plugin. For a new teammate (round 0 only), copy just `{SKILLBASE}/templates/CLAUDE.local.template.md` to `CLAUDE.local.md`.
 
 Replace the placeholders:
 
@@ -87,6 +105,9 @@ Replace the placeholders:
 | `{{CHECK}}` | The preset's check line, or `TBD (no stack yet)` |
 | `{{BUDGET}}` | The budget rule |
 | `{{REFERENCES}}` | One line per reference project, or `None yet.` |
+| `{{PLATFORMS}}`, `{{PEOPLE}}`, `{{STACK}}` | From rounds 1 and 1c. People means the owner, the approver and the reviewers |
+| `{{DONE}}`, `{{DEADLINE}}`, `{{PRIORITY}}` | From round 1c |
+| `{{EXPERIENCE}}`, `{{QUESTION_STYLE}}`, `{{REPLY_LENGTH}}`, `{{AUTONOMY}}` | From round 0, in `CLAUDE.local.md` |
 
 Check: `grep -rnE --exclude-dir=node_modules --exclude-dir=.git '\{\{[A-Z_]+\}\}' <target>` prints nothing. GitHub's `${{ … }}` is expected and isn't matched.
 
@@ -97,6 +118,7 @@ Then:
 - **D001:** what's being built and why, in the user's words. **D002:** the stack and its reason. When no reason was given, write "Why: not stated yet".
 - **PRD:** confirmed vs open, exactly as answered.
 - **PROGRESS:** the first session entry.
+- **`.gitignore`:** if one already exists, append `CLAUDE.local.md` to it. Check it's ignored: `git check-ignore CLAUDE.local.md`.
 - **Solo projects:** in `CLAUDE.md` (the Conventional Commits rule) and `docs/WORKFLOW.md`, replace "Nobody merges their own PR" with "Run `/code-review` before merging your own PR".
 
 ## 5. Companion tools (install automatically, don't ask)
