@@ -32,7 +32,7 @@ Read **`docs/PROFILE.md`** (this project: goals, deadline, what matters most, pl
 ## Commands
 
 ```bash
-claude plugin validate . && bash tools/check.sh   # green before any PR
+claude plugin validate . && bash tools/check.sh && bash tools/check-faults.sh   # green before any PR
 ```
 
 ## Read before doing anything
@@ -128,6 +128,7 @@ specs/N-name/      spec.md + plan.md per piece of work
 .claude-plugin/    plugin.json (bump the version on every release) and marketplace.json
 skills/            what ships: v-start (templates, add-ons, presets), v-discover, v-spec, bundled skills
 tools/check.sh     the guarantees
+tools/check-faults.sh  breaks each guarantee on a copy and fails unless check.sh catches it
 ```
 
 ## Reference projects
