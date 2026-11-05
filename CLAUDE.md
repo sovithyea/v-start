@@ -121,14 +121,14 @@ Process docs use RFC 2119 keywords: MUST can be rejected at review; SHOULD needs
 ## Layout
 
 ```
-CLAUDE.md          this file, the contract
-AGENTS.md          a pointer to this file, never a copy
-docs/              PRD, profile, progress, decisions, verified facts, risks, workflow
-specs/N-name/      spec.md + plan.md per piece of work
-.claude-plugin/    plugin.json (bump the version on every release) and marketplace.json
-skills/            what ships: v-start (templates, add-ons, presets), v-discover, v-spec, bundled skills
-tools/check.sh     the guarantees
-tools/check-faults.sh  breaks each guarantee on a copy and fails unless check.sh catches it
+CLAUDE.md              this file, the contract
+AGENTS.md              a pointer to this file, never a copy
+docs/                  PRD, profile, progress, decisions, verified facts, risks, workflow
+specs/N-name/          spec.md + plan.md per piece of work
+.claude-plugin/        plugin.json (bump the version on every release) and marketplace.json
+skills/                what ships: v-start (templates, add-ons, presets), v-discover, v-spec, bundled skills
+tools/check.sh         the guarantees
+tools/check-faults.sh  breaks each guarantee in a copy, and fails unless check.sh catches it
 ```
 
 ## Reference projects

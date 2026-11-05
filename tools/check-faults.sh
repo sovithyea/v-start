@@ -7,11 +7,16 @@ repo=$(cd "$(dirname "$0")/.." && pwd)
 work=$(mktemp -d); trap 'rm -rf "$work"' EXIT
 bad=0
 
+sums() { (cd "$work/r" && find . -type f -exec cksum {} + | sort | cksum); }
+
 # fault NAME EXPECT CHANGE: EXPECT is text check.sh must print, or "pass" when CHANGE is harmless.
 fault() {
-  rm -rf "$work/r" && mkdir "$work/r"
-  cp -R "$repo/skills" "$repo/.claude-plugin" "$repo/README.md" "$repo/THIRD_PARTY.md" "$work/r/"
+  rm -rf "$work/r" && mkdir "$work/r" &&
+    cp -R "$repo/skills" "$repo/.claude-plugin" "$repo/README.md" "$repo/THIRD_PARTY.md" "$work/r/" ||
+    { echo "FAIL  $1 (couldn't copy the repo)"; bad=1; return; }
+  before=$(sums)
   (cd "$work/r" && eval "$3")
+  if [ "$3" != true ] && [ "$(sums)" = "$before" ]; then echo "FAIL  $1 (the change matched nothing)"; bad=1; return; fi
   out=$(bash "$repo/tools/check.sh" "$work/r" 2>&1); rc=$?
   if [ "$2" = pass ]; then [ $rc -eq 0 ]; else [ $rc -ne 0 ] && grep -qF -- "$2" <<<"$out"; fi && { echo "ok    $1"; return; }
   echo "FAIL  $1 (exit $rc, expected: $2)"; bad=1
@@ -20,6 +25,7 @@ fault() {
 fault "clean copy" pass "true"
 
 # 2. placeholders
+fault "fill table gone" "no fill table found" "perl -ni -e 'print unless /^\| \x60\{\{/' skills/v-start/SKILL.md"
 fault "unlisted placeholder" "aren't in the fill table" "echo '{{PROJECT_2}}' >> skills/v-start/templates/docs/RISKS.md"
 fault "lower-case placeholder" "aren't in the fill table" "echo 'x {{lower}} y' >> skills/v-start/templates/README.md"
 fault "GitHub expression" pass "echo 'run: \${{ github.sha }}' >> skills/v-start/templates/README.md"
@@ -43,5 +49,5 @@ fault "owner's folder in README" "private project names" "echo 'a projects folde
 fault "plain English" pass "echo 'The user may not an earlier project.' >> README.md"
 fault "scanned folder missing" "couldn't read" "rm -rf .claude-plugin"
 
-[ $bad -eq 0 ] && echo "check-faults.sh: every check catches its fault"
+[ $bad -eq 0 ] && echo "check-faults.sh: every check in check.sh catches its fault"
 exit $bad
