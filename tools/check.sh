@@ -5,7 +5,7 @@ set -euo pipefail
 root="${1:-.}"
 skill="$root/skills/v-start"
 fail=0
-leftover='(^|[^$])\{\{[^}]*\}\}'   # any {{…}}; GitHub's ${{ … }} is expected
+leftover='(^|[^$])\{\{'   # any {{ not after a $; GitHub's ${{ … }} is expected. Same pattern as SKILL.md step 4
 
 # 2. Fill the templates and add-ons the way /v-start does, with every placeholder from SKILL.md's
 #    fill table, and fail if any {{…}} is left.

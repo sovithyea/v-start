@@ -27,7 +27,9 @@ The only current record of where things stand. Update it at the end of every wor
 - PR #9 (#5) merged as `59321bd`, after two `/code-review` passes. The installed plugin was updated to 0.4.2.
 - **#6:** removed the private project names and `~/Desktop/projects` from everything users see. Round 1b now searches only the folders next to the repo, or takes a typed path. New guarantee 5 in `check.sh` keeps the names out. Version 0.4.3.
 - The #6 trial found that the skill's placeholder check matches nothing inside Claude Code (see VERIFIED). That is #11.
-- **Next:** merge the #6 PR, then fix the placeholder check (#11).
+- PR #12 (#6) merged as `d1b63c4`, after a `/code-review` pass and its fixes. The installed plugin was updated to 0.4.3.
+- **#11 (C4):** the placeholder check now uses `(^|[^$])\{\{`, which works in Claude Code's ugrep and in the system grep. A headless trial with a planted `{{SURPRISE}}` showed the check catching it. Version 0.4.4.
+- **Next:** merge the #11 PR. Then #10 (commit the `check.sh` fault tests), #7 (behaviour tests, needs a yes on cost) and #8 (icon, Vith picks).
 
 ### 5 Nov 2026 — v-start built, released and used on itself (Vith)
 
