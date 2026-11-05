@@ -4,7 +4,7 @@ Paste only the blocks that apply into the new `CLAUDE.md`. Each one came from a 
 
 ---
 
-## Supabase  *(Yummers, Be At Home)*
+## Supabase
 
 Paste into **Hard rules**:
 
@@ -30,7 +30,7 @@ Paste into **Working here**:
 
 ---
 
-## Next.js / Vercel  *(Be At Home, Yummers)*
+## Next.js / Vercel
 
 Paste into **Hard rules**:
 
@@ -42,7 +42,7 @@ Paste into **Hard rules**:
 
 ---
 
-## Expo / React Native  *(Yummers)*
+## Expo / React Native
 
 Paste into **Hard rules**:
 
@@ -60,7 +60,7 @@ Paste into **Working here**:
 
 ---
 
-## AI / LLM features  *(Rocket Athena, Athena)*
+## AI / LLM features
 
 Paste into **What this repo is**, as **The guarantees**, and fill in the guarantees themselves:
 
@@ -79,7 +79,7 @@ Paste into **Hard rules**:
 
 ---
 
-## UI work and visual PRs  *(Be At Home, Yummers)*
+## UI work and visual PRs
 
 Paste into **Hard rules**:
 
@@ -97,7 +97,7 @@ Take the screenshots in a real browser (gstack `browse`, or `ui-screenshots` for
 
 ---
 
-## Personal or children's data  *(Rocket Athena, Athena, Be At Home)*
+## Personal or children's data
 
 Paste into **Hard rules**:
 
@@ -115,7 +115,7 @@ If the users are children, add to **What this repo is**:
 
 ---
 
-## Client engagement: two repos  *(Be At Home)*
+## Client engagement: two repos
 
 Use this when the code lives in someone else's repo and this repo holds the process. Paste into **What this repo is**:
 
@@ -142,7 +142,7 @@ Paste into **Hard rules**:
 
 ---
 
-## Parallel sessions  *(Be At Home, Yummers)*
+## Parallel sessions
 
 Use this when several agent sessions share the checkout. Paste into **Working here**:
 
@@ -154,7 +154,7 @@ Use this when several agent sessions share the checkout. Paste into **Working he
 
 ---
 
-## Generated files, snapshots and branches  *(Rocket Athena)*
+## Generated files, snapshots and branches
 
 Use this when the repo has generators, golden snapshots or one branch per component. Paste into **Hard rules**:
 

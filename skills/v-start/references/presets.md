@@ -4,7 +4,7 @@ Offer these only after the harness is in place and the stack is recorded as **D0
 
 Copy the preset's CI file to `.github/workflows/checks.yml`. Scaffolders that write their own `README.md`, `CLAUDE.md`, `AGENTS.md` or `.gitignore` must not replace ours: merge their content into ours (keep `CLAUDE.local.md` ignored), then delete theirs.
 
-## Next.js + Supabase + Vercel  *(Be At Home, Athena web)*
+## Next.js + Supabase + Vercel
 
 ```bash
 pnpm create next-app@latest web-tmp --ts --eslint --app --src-dir --use-pnpm --yes   # into a temp dir, then move in, so it can't clobber the harness
@@ -18,7 +18,7 @@ pnpm dlx supabase init
 - **CI:** `presets/nextjs-supabase.yml` (verify + Playwright e2e).
 - **Add-ons:** Supabase, Next.js / Vercel, UI work.
 
-## Expo + Supabase  *(Yummers)*
+## Expo + Supabase
 
 ```bash
 npx create-expo-app@latest app-tmp --yes     # then move in
@@ -29,7 +29,7 @@ npx expo install @supabase/supabase-js @react-native-async-storage/async-storage
 - **CI:** `presets/expo-supabase.yml`.
 - **Add-ons:** Supabase, Expo, UI work. Use the bundled `ios-simulator` skill for Simulator checks.
 
-## Python + uv  *(Athena tools)*
+## Python + uv
 
 ```bash
 uv init --app .
@@ -39,7 +39,7 @@ uv add --dev pytest ruff
 - **Check:** `uv run ruff check && uv run ruff format --check && uv run pytest`
 - **CI:** `presets/python-uv.yml`.
 
-## Node + TypeScript, no build step  *(Rocket Athena)*
+## Node + TypeScript, no build step
 
 ```bash
 npm init -y && npm pkg set type=module
