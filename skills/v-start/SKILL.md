@@ -84,10 +84,10 @@ Anything unanswered stays visibly `TBD` and goes under **Open** in `docs/PRD.md`
 ## 4. Copy and fill
 
 ```bash
-cp -Rn {SKILLBASE}/templates/. <target>/
+rsync -a --ignore-existing {SKILLBASE}/templates/ <target>/
 ```
 
-`-n` never clobbers. In adopt mode, merge by hand any template whose file already exists.
+`--ignore-existing` never clobbers. (Don't use `cp -Rn`: on macOS it exits 1 when it skips a file, which stops a chain of commands.) In adopt mode, merge by hand any template whose file already exists.
 
 Then turn the personal template into the real file: `[ -e CLAUDE.local.md ] && rm CLAUDE.local.template.md || mv CLAUDE.local.template.md CLAUDE.local.md`. The template has a different name because many people's global gitignore ignores `CLAUDE.local.md`, and that would keep it out of this plugin. For a new teammate (round 0 only), copy just `{SKILLBASE}/templates/CLAUDE.local.template.md` to `CLAUDE.local.md`.
 
