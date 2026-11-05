@@ -1,0 +1,23 @@
+# The guarantees in CLAUDE.md, on every PR: what ships reaches other people's machines.
+name: checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+jobs:
+  guarantees:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: 1. the plugin is valid
+        run: npx --yes @anthropic-ai/claude-code plugin validate .
+      - name: 2 and 3. placeholders and licenses
+        run: bash tools/check.sh
