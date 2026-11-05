@@ -16,11 +16,11 @@ What has been observed, how, and when. Anything not observed goes under Unverifi
 | On macOS, `cp -Rn` exits 1 when it skips an existing file | Adopt-mode run on this repo: the chain stopped after the copy | 5 Nov |
 | `CLAUDE.md` at the plugin root gives a validate warning ("not loaded as project context"). That's expected: it's for working on this repo, and users never load it | `claude plugin validate .` after the harness was added | 5 Nov |
 | `tools/check.sh` fails on a stray placeholder and on an uncredited skill | Self-test on a scratch copy with both faults injected | 5 Nov |
+| On a GitHub runner: `claude plugin validate` works without signing in, gitleaks scanned 6 commits and found no leaks, and the commit check passed | PR #4 CI logs (runs 41946092639, 41946092598, 41946092593) | 5 Nov |
 
 ## Unverified
 
-- The secret scan and the stack CI files haven't run on a real PR yet.
-- `claude plugin validate` hasn't run on a GitHub runner (step 2 adds it).
+- The four stack preset CI files haven't run on a real PR yet.
 - A friend's first run.
 
 ## Corrections
