@@ -2,7 +2,7 @@
 
 The only current record of where things stand. Update it at the end of every working session.
 
-**Last updated:** 6 Nov 2026. 0.4.4 is released and installed: `/v-start` asks before installing companion tools (#5), ships no private context (#6), and its placeholder check works inside Claude Code (#11). PR #14 (#10) adds committed fault tests for `check.sh`. Open: #3, #7, #8.
+**Last updated:** 6 Nov 2026. 0.4.4 is released and installed: `/v-start` asks before installing companion tools (#5), ships no private context (#6), and its placeholder check works inside Claude Code (#11). `check.sh` has committed fault tests (#10). 0.5.0 (#15) makes every question an MCQ. Open: #3, #7, #8.
 
 ## Phases
 
@@ -32,7 +32,9 @@ The only current record of where things stand. Update it at the end of every wor
 - PR #13 (#11) merged as `c79ad42`. The installed plugin was updated to 0.4.4.
 - **#10:** `tools/check-faults.sh` copies the repo, breaks each guarantee in turn, and fails unless `check.sh` prints that check's own message. CI runs it. Deleting any check makes it fail.
 - Writing the fault tests found one more silent exit in `check.sh`: with no fill table, `set -e` stopped it before its message. Fixed.
-- **Next:** merge PR #14 (#10). Then #7 (behaviour tests, needs a yes on cost), #8 (icon, Vith picks) and #3 (a friend's first run).
+- PR #14 (#10) merged as `d94e74e`.
+- **#15 (D005), version 0.5.0:** Vith asked that every question be an MCQ, never text in a reply, and that no choice be made before every answer it needs is in. Both rules are now in `/v-start`, `/v-spec`, `/v-discover` and the project template. A run that can't ask puts its questions under Open in `docs/PRD.md`, and refresh mode asks those first. The headless trial showed no questions in the reply and 12 TBDs in PRD Open.
+- **Next:** merge the #15 PR. Then #7 (behaviour tests, needs a yes on cost), #8 (icon, Vith picks) and #3 (a friend's first run).
 
 ### 5 Nov 2026 — v-start built, released and used on itself (Vith)
 

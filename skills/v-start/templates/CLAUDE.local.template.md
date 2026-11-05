@@ -12,7 +12,7 @@ Personal and gitignored. Claude Code loads this file alongside `CLAUDE.md`. It c
 ## What these mean
 
 - **Experience:** *new*: explain each step in one plain line, define a term the first time it's used, and say which command comes next. *Some*: explain only what's unusual. *Pro*: no explanations unless I ask.
-- **Questions:** *multiple choice*: every choice goes through AskUserQuestion, recommended option first, as many rounds as needed. *Chat*: ask in a short list.
+- **Questions:** *multiple choice*: every choice goes through AskUserQuestion, recommended option first, as many rounds as needed, and no question is ever written as text in a reply. *Chat*: ask in a short list.
 - **Replies:** *short*: a table or bullets, under ten lines. *Detailed*: the full reasoning.
 - **Autonomy:** *ask first*: confirm before each step. *Check in at milestones*: work through a plan and stop at each milestone. *Go*: work until done, then report.
 
