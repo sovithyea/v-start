@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# The guarantees in CLAUDE.md that a script can check (2, 3 and 4). Guarantee 1 is `claude plugin validate .`.
+# The guarantees in CLAUDE.md that a script can check (2 to 5). Guarantee 1 is `claude plugin validate .`.
 # Usage: bash tools/check.sh [repo-root]
 set -euo pipefail
 root="${1:-.}"
@@ -39,6 +39,16 @@ skill_pin=$(pin "$skill/SKILL.md"); readme_pin=$(pin "$root/README.md")
 if ! [[ "$skill_pin" =~ ^--branch\ [^\ ]+\ rev-parse\ HEAD\ [0-9a-f]{40}\ $ ]] || [ "$skill_pin" != "$readme_pin" ]; then
   echo "gstack pin differs, or lacks its commit check: SKILL.md '$skill_pin', README.md '$readme_pin'"; fail=1
 fi
+
+# 5. What users' agents read (skills/, .claude-plugin/, README.md) never names the owner's private projects or folder (#6).
+#    "an earlier project" is matched with its capitals, so plain English like "an earlier project" passes.
+rc=0; grep -rnE -e 'projects folder' \
+  "$root/skills" "$root/.claude-plugin" "$root/README.md" || rc=$?
+case $rc in
+  0) echo "private project names or paths above would ship to users"; fail=1 ;;
+  1) ;;
+  *) echo "the private-context scan couldn't read skills/, .claude-plugin/ or README.md"; fail=1 ;;
+esac
 
 [ $fail -eq 0 ] && echo "check.sh: all guarantees hold"
 exit $fail

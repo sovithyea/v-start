@@ -21,12 +21,15 @@ What has been observed, how, and when. Anything not observed goes under Unverifi
 | With no answer from the user, `/v-start` made no install call and ended with a question listing all three tools, plus "None". It offered gstack too, because the trial's permissions blocked its check for what was already installed, so the skip-if-present step wasn't tested | Headless trial with a fresh `CLAUDE_CONFIG_DIR`, installs blocked by `--disallowedTools`, tool calls read from the stream-json log | 6 Nov |
 | `check.sh` guarantee 4 fails when the "ask first" heading is gone, when "install automatically" comes back, when the README's gstack tag differs, when the commit check is gone, and when the README loses its gstack line, each with a message. It passes on the clean branch | Self-test on a scratch copy with each fault injected | 6 Nov |
 | The gstack install command, in bash and zsh: with the right commit it runs `setup` and keeps the clone; with a wrong commit it removes the clone and skips `setup`; when the folder already exists it changes nothing | Ran the command with the path pointed at a scratch folder and `./setup` replaced by an `echo` | 6 Nov |
+| `check.sh` guarantee 5 fails when a private project name or the owner's folder shows up in a skill, a template, `plugin.json` or the README, and when a scanned path is missing. It passes on the clean branch and on plain English like "an earlier project" | Self-test on a scratch copy with each fault injected | 6 Nov |
+| Inside a Claude Code session, `grep` is a shell function that runs ugrep, and the skill's placeholder pattern matches nothing there, even `a {{X}} b`. `/usr/bin/grep` matches it. `check.sh` calls plain `grep` in a new bash process, which doesn't inherit shell functions, so on this machine it gets `/usr/bin/grep` and isn't affected | `type -a grep`, `bash -c 'type grep'`, then the pattern on sample lines with each grep; the #6 trial missed 4 placeholders in `specs/` | 6 Nov |
 | On a GitHub runner: `claude plugin validate` works without signing in, gitleaks scanned 6 commits and found no leaks, and the commit check passed | PR #4 CI logs (runs 41946092639, 41946092598, 41946092593) | 5 Nov |
 
 ## Unverified
 
 - The four stack preset CI files haven't run on a real PR yet.
 - A friend's first run.
+- Round 1b's search of the folders next to the repo (`find ..`): in the #6 headless trial, Claude Code blocked `find` outside the working folder, so it fell back to asking "None / I'll type a path". An interactive run should ask permission instead. Not seen yet.
 
 ## Corrections
 

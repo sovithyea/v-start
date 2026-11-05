@@ -1,6 +1,6 @@
 ---
 name: v-start
-description: Start a new project, or bring an existing repo onto the same footing, with the agent harness used across an earlier project, an earlier project and an earlier project. It sets up a CLAUDE.md contract, an AGENTS.md pointer, the PROGRESS / DECISIONS / VERIFIED / RISKS ledgers, spec and plan before code, an issue-first workflow, Conventional Commits, CI and optional stack presets. Use when the user says "/v-start", "start a new project", "set up a new repo", "bootstrap this project", "add the harness", or wants a repo set up "the way we usually do it".
+description: Start a new project, or bring an existing repo onto the same footing, with a proven agent harness. It sets up a CLAUDE.md contract, an AGENTS.md pointer, the PROGRESS / DECISIONS / VERIFIED / RISKS ledgers, spec and plan before code, an issue-first workflow, Conventional Commits, CI and optional stack presets. Use when the user says "/v-start", "start a new project", "set up a new repo", "bootstrap this project", "add the harness", or wants a repo set up "the way we usually do it".
 ---
 
 # v-start
@@ -46,7 +46,7 @@ Adapt from here on. A "new" person gets each next step explained in one plain li
 4. Where does it live? Options: new GitHub repo / an existing repo / local for now.
 
 **Round 1b: reference projects**
-Find candidates first: `find .. a projects folder -maxdepth 3 -name CLAUDE.md 2>/dev/null`, and list the repos that hold one. Ask (multiSelect): which past repos should this one learn from? Offer the top 3 found, plus "none". The chosen repos go in `CLAUDE.md` under **Reference projects**, one line each: the path, and what it's the reference for. Read their `CLAUDE.md` hard rules, and offer any that fit as extra rules in round 2.
+Find candidates first: `find .. -maxdepth 3 -name CLAUDE.md 2>/dev/null` (the repos next to this one), and list the repos that hold one. Ask (multiSelect): which past repos should this one learn from? Offer the top 3 found, plus "none". Other → the user types a path. The chosen repos go in `CLAUDE.md` under **Reference projects**, one line each: the path, and what it's the reference for. Read their `CLAUDE.md` hard rules, and offer any that fit as extra rules in round 2.
 
 **Round 1c: goals and platforms** (saved to `docs/PROFILE.md`)
 1. What does done look like for the first version? Other → one sentence. Offer 2–3 drafts based on round 1.
@@ -57,7 +57,7 @@ Find candidates first: `find .. a projects folder -maxdepth 3 -name CLAUDE.md 2>
 **Round 2: stack and risk**
 1. Stack: Next.js + Supabase + Vercel / Expo + Supabase / Python + uv / Node + TS, no build / decide later.
 2. Add-ons (multiSelect): the `addons.md` blocks that fit the stack and users. Preselect the obvious ones in the descriptions.
-3. Guarantees: "none yet", or Other → what must never happen (for example, an earlier project's grounding check).
+3. Guarantees: "none yet", or Other → what must never happen (for example, "every answer cites a source").
 4. Budget: ask before any spend (Recommended) / $0, free tiers only.
 
 **Round 3: setup actions**

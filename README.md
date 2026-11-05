@@ -1,6 +1,6 @@
 # v-start
 
-Start any project with the agent harness from an earlier project, an earlier project and an earlier project. Type `/v-start`, answer a few multiple-choice rounds, and the repo is ready for agents to work in safely.
+Start any project with a proven agent harness. Type `/v-start`, answer a few multiple-choice rounds, and the repo is ready for agents to work in safely.
 
 ## Install
 
