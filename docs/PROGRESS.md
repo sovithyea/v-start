@@ -2,7 +2,7 @@
 
 The only current record of where things stand. Update it at the end of every working session.
 
-**Last updated:** 6 Nov 2026. 0.4.1 is released and installed. 0.4.2 (#5) makes `/v-start` ask before installing companion tools. Issues #6, #7 and #8 are on the board.
+**Last updated:** 6 Nov 2026. 0.4.4 is released and installed: `/v-start` asks before installing companion tools (#5), ships no private context (#6), and its placeholder check works inside Claude Code (#11). PR #14 (#10) adds committed fault tests for `check.sh`. Open: #3, #7, #8.
 
 ## Phases
 
@@ -29,7 +29,10 @@ The only current record of where things stand. Update it at the end of every wor
 - The #6 trial found that the skill's placeholder check matches nothing inside Claude Code (see VERIFIED). That is #11.
 - PR #12 (#6) merged as `d1b63c4`, after a `/code-review` pass and its fixes. The installed plugin was updated to 0.4.3.
 - **#11 (C4), PR #13:** the skill's placeholder check now calls `command grep`, which skips Claude Code's ugrep shell function, with the original pattern. `check.sh` fails if step 4 stops using it. Version 0.4.4. A first, shorter-pattern fix was dropped after `/code-review`: it flagged any `{{`, which hurts adopt mode in repos with Helm or Jinja files.
-- **Next:** merge PR #13. Then #10 (commit the `check.sh` fault tests), #7 (behaviour tests, needs a yes on cost) and #8 (icon, Vith picks).
+- PR #13 (#11) merged as `c79ad42`. The installed plugin was updated to 0.4.4.
+- **#10:** `tools/check-faults.sh` copies the repo, breaks each guarantee in turn, and fails unless `check.sh` prints that check's own message. CI runs it. Deleting any check makes it fail.
+- Writing the fault tests found one more silent exit in `check.sh`: with no fill table, `set -e` stopped it before its message. Fixed.
+- **Next:** merge PR #14 (#10). Then #7 (behaviour tests, needs a yes on cost), #8 (icon, Vith picks) and #3 (a friend's first run).
 
 ### 5 Nov 2026 — v-start built, released and used on itself (Vith)
 

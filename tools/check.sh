@@ -11,7 +11,7 @@ leftover='(^|[^$])\{\{[^}]*\}\}'   # any {{…}}; GitHub's ${{ … }} is expecte
 #    fill table, and fail if any {{…}} is left.
 tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT
 cp -R "$skill/templates/." "$skill/references" "$tmp/"
-names=$(grep -E '^\| `\{\{' "$skill/SKILL.md" | grep -oE '\{\{[A-Z_]+\}\}' | sort -u)
+names=$(grep -E '^\| `\{\{' "$skill/SKILL.md" | grep -oE '\{\{[A-Z_]+\}\}' | sort -u || true)
 [ -n "$names" ] || { echo "no fill table found in skills/v-start/SKILL.md"; exit 1; }
 for name in $names; do
   grep -rlF "$name" "$tmp" | while IFS= read -r f; do
