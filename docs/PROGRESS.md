@@ -26,8 +26,8 @@ The only current record of where things stand. Update it at the end of every wor
 - Headless trial: no install call, and it asked instead (see VERIFIED). Not tested: the skip-if-present step (the trial's permissions blocked it) and a person picking "None" or some tools.
 - PR #9 (#5) merged as `59321bd`, after two `/code-review` passes. The installed plugin was updated to 0.4.2.
 - **#6:** removed the private project names and `a projects folder` from everything users see. Round 1b now searches only the folders next to the repo, or takes a typed path. New guarantee 5 in `check.sh` keeps the names out. Version 0.4.3.
-- The #6 trial found that the skill's placeholder check matches nothing inside Claude Code (see VERIFIED). New issue opened.
-- **Next:** merge the #6 PR, then fix the placeholder check.
+- The #6 trial found that the skill's placeholder check matches nothing inside Claude Code (see VERIFIED). That is #11.
+- **Next:** merge the #6 PR, then fix the placeholder check (#11).
 
 ### 5 Nov 2026 — v-start built, released and used on itself (Vith)
 
