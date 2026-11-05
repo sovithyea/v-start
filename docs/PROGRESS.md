@@ -2,7 +2,7 @@
 
 The only current record of where things stand. Update it at the end of every working session.
 
-**Last updated:** 5 Nov 2026. v0.4.0 is released and installed. 0.4.1 (PR #4) adds the harness on v-start itself, CI for the guarantees, and the code review's fixes.
+**Last updated:** 6 Nov 2026. 0.4.1 is released and installed. 0.4.2 (#5) makes `/v-start` ask before installing companion tools. Issues #6, #7 and #8 are on the board.
 
 ## Phases
 
@@ -15,6 +15,16 @@ The only current record of where things stand. Update it at the end of every wor
 - **Vith:** the open questions in `docs/PRD.md`.
 
 ## Session log
+
+### 6 Nov 2026 — ask before installing companion tools (Vith)
+
+- An Agensi.io email offered to list v-start's skills. Advice given: wait until #3 passes. Nothing decided or recorded.
+- Reviewed how to improve the skill. Four issues are on the board: #5 ask before installs, #6 remove private context, #7 behaviour tests in CI (needs Vith's yes on cost), #8 plugin icon (Vith picks).
+- **#5:** D004 replaces D003's auto-install line. `/v-start` now asks (multiSelect) which missing tools to install. gstack is pinned to `v1.96.0.0` and its commit. `check.sh` now checks D004 (see CLAUDE.md guarantee 4). Version 0.4.2.
+- `/code-review medium` on PR #9 found 8 issues. Fixed: the VERIFIED and PROGRESS wording, install nothing when it can't ask, a duplicate report line, the tag check, the text check, and the newest release pinned by commit. Skipped: where D003's Status line sits (rule 4 is met), and gstack's detached HEAD (no harm seen).
+- A second review found: the `|` in the gstack command split its Markdown table cell, a failed check left the clone behind, `check.sh` could exit silently, and the pin check didn't require the commit check. All fixed: the command now sits in its own code block, runs only when gstack is absent, and removes the clone on any failure. Committed fault tests for `check.sh` are #10 (hard rule 6).
+- Headless trial: no install call, and it asked instead (see VERIFIED). Not tested: the skip-if-present step (the trial's permissions blocked it) and a person picking "None" or some tools.
+- **Next:** Vith reviews and merges the #5 PR. Then #6.
 
 ### 5 Nov 2026 — v-start built, released and used on itself (Vith)
 
