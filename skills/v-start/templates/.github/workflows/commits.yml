@@ -26,7 +26,7 @@ jobs:
           re='^(feat|fix|docs|chore|refactor|test|perf|build|ci|style|revert)(\([a-z0-9._/-]+\))?!?: .+'
           bad=0
           while IFS= read -r s; do
-            case "$s" in Merge*) continue ;; esac
+            case "$s" in Merge*|Revert\ \"*) continue ;; esac  # merge commits and git revert's default subject
             if ! printf '%s\n' "$s" | grep -Eq "$re"; then echo "::error::not conventional: $s"; bad=1; fi
           done < <(git log --format=%s "$BASE..$HEAD")
           printf '%s\n' "$TITLE" | grep -Eq "$re" || { echo "::error::PR title not conventional: $TITLE"; bad=1; }
