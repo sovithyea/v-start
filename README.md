@@ -59,15 +59,21 @@ It keeps up as you go:
 
 ## Companions
 
-`/v-start` installs gstack, impeccable and ponytail automatically when they're missing, once per machine. It never reinstalls them. agent-reach and treg are listed in the report only, never installed.
+`/v-start` asks which of gstack, impeccable and ponytail to install when they're missing, and installs only the ones you pick. It never reinstalls them. gstack is pinned to a release and its commit. agent-reach and treg are listed in the report only, never installed.
 
 | Tool | For | Install |
 |---|---|---|
-| gstack | `browse` screenshots, QA, review, `diagram` | `git clone https://github.com/garrytan/gstack ~/.claude/skills/gstack && ~/.claude/skills/gstack/setup` |
+| gstack | `browse` screenshots, QA, review, `diagram` | The command below the table |
 | impeccable | Design critique | `/plugin marketplace add pbakaus/impeccable` then `/plugin install impeccable@impeccable` |
 | ponytail | Least-code mode | `/plugin marketplace add DietrichGebert/ponytail` then `/plugin install ponytail@ponytail` |
 | agent-reach | Reading Reddit, X, YouTube and more | https://github.com/Panniantong/Agent-Reach |
 | treg | Live data APIs | https://treg.to/tutorial |
+
+To install gstack by hand at the pinned release (if anything fails, the clone is removed):
+
+```bash
+[ ! -e ~/.claude/skills/gstack ] && { git clone --branch v1.96.0.0 --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack && git -C ~/.claude/skills/gstack rev-parse HEAD | grep -qx 6666b7296766f8e0c9f3cc44b70fd1eff6ad2e92 && (cd ~/.claude/skills/gstack && ./setup) || rm -rf ~/.claude/skills/gstack; }
+```
 
 ## Working on v-start
 

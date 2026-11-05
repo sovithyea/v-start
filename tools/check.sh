@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# The guarantees in CLAUDE.md that a script can check (2 and 3). Guarantee 1 is `claude plugin validate .`.
+# The guarantees in CLAUDE.md that a script can check (2, 3 and 4). Guarantee 1 is `claude plugin validate .`.
 # Usage: bash tools/check.sh [repo-root]
 set -euo pipefail
 root="${1:-.}"
@@ -29,6 +29,16 @@ for dir in "$root"/skills/*/; do
   [[ " $ours " == *" $name "* ]] && continue
   grep -qF "\`skills/$name\`" "$root/THIRD_PARTY.md" || { echo "skills/$name is not credited in THIRD_PARTY.md"; fail=1; }
 done
+
+# 4. Companion tools are asked about first, and gstack is pinned to the same release and commit everywhere (D004).
+#    shortcut: this checks the text only, until #7 tests what /v-start does.
+grep -qF '## 5. Companion tools (ask first)' "$skill/SKILL.md" || { echo "skills/v-start/SKILL.md lost its 'ask first' companion step (D004)"; fail=1; }
+if grep -niF 'install automatically' "$skill/SKILL.md"; then echo "skills/v-start/SKILL.md installs without asking again (D004)"; fail=1; fi
+pin() { grep -m1 'garrytan/gstack' "$1" | grep -oE -- '--branch [^ ]+|rev-parse HEAD|[0-9a-f]{40}' | tr '\n' ' ' || true; }
+skill_pin=$(pin "$skill/SKILL.md"); readme_pin=$(pin "$root/README.md")
+if ! [[ "$skill_pin" =~ ^--branch\ [^\ ]+\ rev-parse\ HEAD\ [0-9a-f]{40}\ $ ]] || [ "$skill_pin" != "$readme_pin" ]; then
+  echo "gstack pin differs, or lacks its commit check: SKILL.md '$skill_pin', README.md '$readme_pin'"; fail=1
+fi
 
 [ $fail -eq 0 ] && echo "check.sh: all guarantees hold"
 exit $fail
