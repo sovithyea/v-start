@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# The guarantees in CLAUDE.md that a script can check (2, 3 and 4). Guarantee 1 is `claude plugin validate .`.
+# The guarantees in CLAUDE.md that a script can check (2 to 5). Guarantee 1 is `claude plugin validate .`.
 # Usage: bash tools/check.sh [repo-root]
 set -euo pipefail
 root="${1:-.}"
@@ -38,6 +38,11 @@ pin() { grep -m1 'garrytan/gstack' "$1" | grep -oE -- '--branch [^ ]+|rev-parse 
 skill_pin=$(pin "$skill/SKILL.md"); readme_pin=$(pin "$root/README.md")
 if ! [[ "$skill_pin" =~ ^--branch\ [^\ ]+\ rev-parse\ HEAD\ [0-9a-f]{40}\ $ ]] || [ "$skill_pin" != "$readme_pin" ]; then
   echo "gstack pin differs, or lacks its commit check: SKILL.md '$skill_pin', README.md '$readme_pin'"; fail=1
+fi
+
+# 5. Nothing users see names the owner's private projects or folders (#6).
+if grep -rniE 'athena|yummers|be ?at ?home|beathome|rocket academy|Desktop/projects' "$skill/.." "$root/.claude-plugin" "$root/README.md"; then
+  echo "private project names or paths above would ship to users"; fail=1
 fi
 
 [ $fail -eq 0 ] && echo "check.sh: all guarantees hold"

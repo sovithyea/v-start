@@ -3,7 +3,7 @@ name: visual-pr
 description: Write or update a pull request's description, with diagrams of what changed. Use whenever opening a PR or writing or refreshing a PR description in a repo, or when the user invokes visual-pr by name.
 ---
 
-<!-- Adapted from humanlayer/skills (visual-pr, MIT), via the Yummers and Rocket Athena copies:
+<!-- Adapted from humanlayer/skills (visual-pr, MIT):
      the template keeps what a v-start repo's docs/WORKFLOW.md requires, and nothing is saved inside the repo. -->
 
 # Describe a Pull Request

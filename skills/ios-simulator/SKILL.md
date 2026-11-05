@@ -3,7 +3,7 @@ name: ios-simulator
 description: Drive the iOS Simulator for an Expo / React Native app — screenshots, taps, typing and reloading Metro. Use when checking a mobile change on the Simulator.
 ---
 
-<!-- From the Yummers repo's own skill, made generic for v-start. -->
+<!-- Written for v-start, from notes kept while building an Expo app. -->
 
 # Driving the iOS Simulator
 
