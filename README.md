@@ -59,11 +59,11 @@ It keeps up as you go:
 
 ## Companions
 
-`/v-start` installs gstack, impeccable and ponytail automatically when they're missing, once per machine. It never reinstalls them. agent-reach and treg are listed in the report only, never installed.
+`/v-start` asks which of gstack, impeccable and ponytail to install when they're missing, and installs only the ones you pick. It never reinstalls them. gstack is pinned to a release. agent-reach and treg are listed in the report only, never installed.
 
 | Tool | For | Install |
 |---|---|---|
-| gstack | `browse` screenshots, QA, review, `diagram` | `git clone https://github.com/garrytan/gstack ~/.claude/skills/gstack && ~/.claude/skills/gstack/setup` |
+| gstack | `browse` screenshots, QA, review, `diagram` | `git clone --branch v1.91.242.0 --depth 1 https://github.com/garrytan/gstack ~/.claude/skills/gstack && ~/.claude/skills/gstack/setup` |
 | impeccable | Design critique | `/plugin marketplace add pbakaus/impeccable` then `/plugin install impeccable@impeccable` |
 | ponytail | Least-code mode | `/plugin marketplace add DietrichGebert/ponytail` then `/plugin install ponytail@ponytail` |
 | agent-reach | Reading Reddit, X, YouTube and more | https://github.com/Panniantong/Agent-Reach |
