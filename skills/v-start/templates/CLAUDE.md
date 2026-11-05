@@ -100,7 +100,7 @@ Answering a question needs none of this. Changing anything does.
 
 ### Reporting
 
-**15. Say what you verified and what you assumed.** When you report work as done, split it into what a test checks (one that would fail if it broke) and what you only checked by reading. Passing tests don't prove the untested part works. Label reasoning **[Inference]** or **[Assumption]**. When an open question blocks you, stop and ask {{OWNER}}. Never pick an answer on their behalf, not even as a labelled default.
+**15. Say what you verified and what you assumed.** When you report work as done, split it into what a test checks (one that would fail if it broke) and what you only checked by reading. Passing tests don't prove the untested part works. Label reasoning **[Inference]** or **[Assumption]**. When an open question blocks you, stop and ask {{OWNER}}. Never pick an answer on their behalf, not even as a labelled default. Before you make a choice, ask until you have everything needed to build it. Ask in the style `CLAUDE.local.md` sets: multiple choice means every question is an AskUserQuestion MCQ, never text in a reply.
 
 **16. Leave a trail someone else can pick up.** End every session with a `docs/PROGRESS.md` entry and update its "Last updated" line. Write so another person's session could carry on without you. Don't invent effort estimates.
 

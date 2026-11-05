@@ -49,3 +49,14 @@ v-start ships as a plugin from `sovithyea/v-start`, installed with `/plugin mark
 `/v-start` asks (multiSelect MCQ) which missing companion tools to install, and installs only those. gstack is pinned to its newest release, `v1.96.0.0`, and the clone is checked against that release's commit (`6666b7296766`), so a moved tag can't slip through. This replaces D003's "install automatically" line.
 
 **Why:** v-start is public (D002). Installing without asking runs other people's code, including gstack's `./setup` script, on a stranger's machine without their say. Pinning means nothing upstream can change what our users run until we bump it in a PR. The newest release was chosen over the oldest because release age alone says nothing about which one is safer. Raised while reviewing how to improve the skill (#5).
+
+## D005 — Every question is an MCQ, and choices wait for every answer
+
+*6 Nov 2026 · Vith*
+
+- In `/v-start`, `/v-spec` and `/v-discover`, every question goes to the user as an AskUserQuestion MCQ. None is written as text in a reply, including in the final reports.
+- Before making a choice, or building on one, an agent asks until it has every answer the choice needs. It never fills a gap with a default.
+- When a question can't be asked (a headless run), it goes under Open in `docs/PRD.md` as TBD, to be asked in the next live session.
+- The project template carries both rules. A person who picked "chat" in round 0 still gets a short list; the v-start commands always use MCQ.
+
+**Why:** Vith, 6 Nov 2026: "claude sometimes replies back with a bunch of non mcq questions in the outputs, these should be mcq questions" and "never make a choice without getting all u need to build it". This extends D003's "every choice is asked as multiple choice". (#15)
