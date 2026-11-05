@@ -24,7 +24,10 @@ The only current record of where things stand. Update it at the end of every wor
 - `/code-review medium` on PR #9 found 8 issues. Fixed: the VERIFIED and PROGRESS wording, install nothing when it can't ask, a duplicate report line, the tag check, the text check, and the newest release pinned by commit. Skipped: where D003's Status line sits (rule 4 is met), and gstack's detached HEAD (no harm seen).
 - A second review found: the `|` in the gstack command split its Markdown table cell, a failed check left the clone behind, `check.sh` could exit silently, and the pin check didn't require the commit check. All fixed: the command now sits in its own code block, runs only when gstack is absent, and removes the clone on any failure. Committed fault tests for `check.sh` are #10 (hard rule 6).
 - Headless trial: no install call, and it asked instead (see VERIFIED). Not tested: the skip-if-present step (the trial's permissions blocked it) and a person picking "None" or some tools.
-- **Next:** Vith reviews and merges the #5 PR. Then #6.
+- PR #9 (#5) merged as `59321bd`, after two `/code-review` passes. The installed plugin was updated to 0.4.2.
+- **#6:** removed the private project names and `a projects folder` from everything users see. Round 1b now searches only the folders next to the repo, or takes a typed path. New guarantee 5 in `check.sh` keeps the names out. Version 0.4.3.
+- The #6 trial found that the skill's placeholder check matches nothing inside Claude Code (see VERIFIED). New issue opened.
+- **Next:** merge the #6 PR, then fix the placeholder check.
 
 ### 5 Nov 2026 — v-start built, released and used on itself (Vith)
 

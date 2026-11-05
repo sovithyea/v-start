@@ -15,6 +15,7 @@ Guidance for Claude Code (and every other agent) in this repo. Humans should sta
 2. **No placeholders are left over.** The check copies the templates and add-ons into a scratch folder, fills every placeholder in `/v-start`'s fill table, and fails if any `{{…}}` is left, whatever its spelling.
 3. **No unlicensed skills.** Every bundled skill v-start didn't write is listed in `THIRD_PARTY.md`.
 4. **Nothing installs without asking (D004).** The check fails if `/v-start`'s companion step stops saying "ask first" or says "install automatically", or if the gstack pin isn't the same release and commit in the skill and the README. This checks the text only; #7 will test the behaviour.
+5. **No private context ships.** The check fails if anything in `skills/`, `.claude-plugin/` or `README.md` names the owner's private projects or their folder.
 
 **Users run what we ship.** Anything in `skills/` reaches other people's machines on their next update, so a change there gets a headless trial (`claude -p "/v-start:v-start …" --plugin-dir .` in a scratch folder) before it merges.
 
