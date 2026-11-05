@@ -1,6 +1,6 @@
 {
   "name": "v-start",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Start a project with the agent harness from an earlier project, an earlier project and an earlier project: CLAUDE.md contract, decision/verified/risk ledgers, spec-before-code, issue-first workflow.",
   "author": { "name": "Vithyea" },
   "license": "MIT"

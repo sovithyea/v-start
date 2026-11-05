@@ -41,7 +41,9 @@ It also works on an existing repo: it reads what's there, never overwrites a fil
 | `ios-simulator` | Driving the iOS Simulator (Expo) |
 | `pr-screenshots`, `screen-recording` | Before/after images and GIFs in PRs |
 
-## Recommended companions (install separately)
+## Companions
+
+`/v-start` installs gstack, impeccable and ponytail automatically when they're missing, once per machine. It never reinstalls them. agent-reach and treg are listed in the report only, never installed.
 
 | Tool | For | Install |
 |---|---|---|

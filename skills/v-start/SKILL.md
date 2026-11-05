@@ -31,7 +31,7 @@ Check the target directory (the cwd unless the user names one): `git status`, `l
 
 **Round 1: the project**
 1. What is it? (Other → one sentence.)
-2. Who uses it? Options: me only / friends or a small group / a client's users / children (if children, apply the personal-data add-on and the voice rule).
+2. Who uses it? Options: me only / friends or a small group / a client's users / children. **Anyone other than "me only" means accounts that hold other people's names or emails, so preselect the personal-data add-on.** For children, also add the voice rule.
 3. Who decides product questions, and who approves? Options: me, solo / me plus a named teammate / a client owner.
 4. Where does it live? Options: new GitHub repo / an existing repo / local for now.
 
@@ -97,13 +97,25 @@ Then:
 - **D001:** what's being built and why, in the user's words. **D002:** the stack and its reason. When no reason was given, write "Why: not stated yet".
 - **PRD:** confirmed vs open, exactly as answered.
 - **PROGRESS:** the first session entry.
-- **Solo projects:** in `CLAUDE.md` hard rule 4 and `docs/WORKFLOW.md`, replace "Nobody merges their own PR" with "Run `/code-review` before merging your own PR".
+- **Solo projects:** in `CLAUDE.md` (the Conventional Commits rule) and `docs/WORKFLOW.md`, replace "Nobody merges their own PR" with "Run `/code-review` before merging your own PR".
 
-## 5. Preset (if chosen)
+## 5. Companion tools (install automatically, don't ask)
+
+Install each one that's missing, once per machine. Check first, and skip it if it's already there:
+
+| Tool | Present if | Install |
+|---|---|---|
+| gstack | `~/.claude/skills/gstack` exists | `git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack && (cd ~/.claude/skills/gstack && ./setup)` (needs Git and Bun; if Bun is missing, skip it and say so) |
+| impeccable | `claude plugin list` shows `impeccable@impeccable` | `claude plugin marketplace add pbakaus/impeccable && claude plugin install impeccable@impeccable` |
+| ponytail | `claude plugin list` shows `ponytail@ponytail` | `claude plugin marketplace add DietrichGebert/ponytail && claude plugin install ponytail@ponytail` |
+
+If the permission system blocks an install, don't work around it. List the command for the user to run with `! <command>`. agent-reach (https://github.com/Panniantong/Agent-Reach) and treg (https://treg.to/tutorial, needs its own sign-up) are only listed in the report, never installed. In the report, say what was installed. New plugins load in the next session.
+
+## 6. Preset (if chosen)
 
 Follow `references/presets.md` for the stack. Copy `{SKILLBASE}/presets/<stack>.yml` to `.github/workflows/checks.yml`. Run the check line once and record the result in `docs/VERIFIED.md`.
 
-## 6. Outward actions (only on the user's yes from round 3)
+## 7. Outward actions (only on the user's yes from round 3)
 
 - `gh repo create <owner>/<name> --private|--public --source . --push`
 - Labels: `gh label create type:feat`, `type:fix`, `type:docs`, `type:chore`.
@@ -112,7 +124,7 @@ Follow `references/presets.md` for the stack. Copy `{SKILLBASE}/presets/<stack>.
 
 The local commit needs no question. Stage files by name: `chore: start the project harness`, with a body listing what was installed.
 
-## 7. Report (short)
+## 8. Report (short)
 
 A table of the files created or merged, the add-ons applied, and what's `TBD` and who answers it. Then the next step, as an MCQ:
 
