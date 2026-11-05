@@ -1,3 +1,5 @@
+<!-- Agents: write this PR with /v-start:visual-pr, which replaces this template. -->
+
 ## What
 
 <!-- What changed and why, in one or two sentences. Quote the decision or the owner where there is one. -->
