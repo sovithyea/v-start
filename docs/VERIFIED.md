@@ -17,6 +17,8 @@ What has been observed, how, and when. Anything not observed goes under Unverifi
 | `CLAUDE.md` at the plugin root gives a validate warning ("not loaded as project context"). That's expected: it's for working on this repo, and users never load it | `claude plugin validate .` after the harness was added | 5 Nov |
 | `tools/check.sh` fills the templates and add-ons, then fails on any leftover `{{…}}` (including `{{PROJECT_2}}` and `{{lower}}`) and on an uncredited skill, even one named like a credited one | Self-test on a scratch copy with the faults injected | 5 Nov |
 | The commit check skips `Merge…` and `Revert "…"` subjects, and still checks `revert:` and `Revert stuff` | Local test of the `case` pattern | 5 Nov |
+| gstack's releases: `v1.91.242.0` (26 Oct), `v1.91.318.0` (29 Oct), `v1.92.55.0` (2 Nov), `v1.96.0.0` (5 Nov). We pin the oldest, which has had the longest to settle | `gh api repos/garrytan/gstack/releases` | 6 Nov |
+| `/v-start` asks which companion tools to install and installs none until the user picks. With impeccable and ponytail missing, the trial listed them as a question and made no install call | Headless trial with a fresh `CLAUDE_CONFIG_DIR`, installs blocked by `--disallowedTools`, tool calls read from the stream-json log | 6 Nov |
 | On a GitHub runner: `claude plugin validate` works without signing in, gitleaks scanned 6 commits and found no leaks, and the commit check passed | PR #4 CI logs (runs 41946092639, 41946092598, 41946092593) | 5 Nov |
 
 ## Unverified

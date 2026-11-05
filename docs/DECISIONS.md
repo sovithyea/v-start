@@ -39,3 +39,13 @@ v-start ships as a plugin from `sovithyea/v-start`, installed with `/plugin mark
 - Personalisation: the person's settings go in `CLAUDE.local.md` (gitignored) and the project's in `docs/PROFILE.md`. Corrections are saved, a check-in runs at milestones, and a re-run refreshes.
 
 **Why:** chosen by Vith question by question in the setup session, from the patterns in the reference repos.
+
+**Status:** the companion-tools line is replaced by D004 (6 Nov 2026). The rest stands.
+
+## D004 — Ask before installing companion tools
+
+*6 Nov 2026 · Vith*
+
+`/v-start` asks (multiSelect MCQ) which missing companion tools to install, and installs only those. gstack is pinned to a release tag (`v1.91.242.0`), not its latest commit. This replaces D003's "install automatically" line.
+
+**Why:** v-start is public (D002). Installing without asking runs other people's code, including gstack's `./setup` script, on a stranger's machine without their say. Pinning means a new upstream commit can't change what our users run until we bump it in a PR. Raised while reviewing how to improve the skill (#5).

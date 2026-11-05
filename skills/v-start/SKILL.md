@@ -122,17 +122,17 @@ Then:
 - **`.gitignore`:** if one already exists, append `CLAUDE.local.md` to it. Check it's ignored: `git check-ignore CLAUDE.local.md`.
 - **Solo projects:** in `CLAUDE.md` (the Conventional Commits rule) and `docs/WORKFLOW.md`, replace "Nobody merges their own PR" with "Run `/code-review` before merging your own PR".
 
-## 5. Companion tools (install automatically, don't ask)
+## 5. Companion tools (ask first)
 
-Install each one that's missing, once per machine. Check first, and skip it if it's already there:
+Check which ones are already installed, and skip those. Ask about the rest in one multiSelect MCQ: "Which helper tools should I install?" Give one option per missing tool, saying what it's for and what it installs, plus "None". Install only what the user picks, once per machine:
 
 | Tool | Present if | Install |
 |---|---|---|
-| gstack | `~/.claude/skills/gstack` exists | `git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack && (cd ~/.claude/skills/gstack && ./setup)` (needs Git and Bun; if Bun is missing, skip it and say so) |
+| gstack | `~/.claude/skills/gstack` exists | `git clone --branch v1.91.242.0 --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack && (cd ~/.claude/skills/gstack && ./setup)` (needs Git and Bun; if Bun is missing, skip it and say so). Pinned to a release, so a new upstream commit can't change what users run |
 | impeccable | `claude plugin list` shows `impeccable@impeccable` | `claude plugin marketplace add pbakaus/impeccable && claude plugin install impeccable@impeccable` |
 | ponytail | `claude plugin list` shows `ponytail@ponytail` | `claude plugin marketplace add DietrichGebert/ponytail && claude plugin install ponytail@ponytail` |
 
-If the permission system blocks an install, don't work around it. List the command for the user to run with `! <command>`. agent-reach (https://github.com/Panniantong/Agent-Reach) and treg (https://treg.to/tutorial, needs its own sign-up) are only listed in the report, never installed. In the report, say what was installed. New plugins load in the next session.
+If the permission system blocks an install, don't work around it. List the command for the user to run with `! <command>`. agent-reach (https://github.com/Panniantong/Agent-Reach) and treg (https://treg.to/tutorial, needs its own sign-up) are only listed in the report, never installed. In the report, say what was installed and what was skipped. New plugins load in the next session.
 
 ## 6. Preset (if chosen)
 
