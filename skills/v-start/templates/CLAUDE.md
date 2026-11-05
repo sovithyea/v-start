@@ -40,7 +40,7 @@ Answering a question needs none of this. Changing anything does.
 5. **Work in your own worktree** off a fresh `origin/main`, never in the shared checkout: `git worktree add <scratchpad>/<name> -b <type>/<name> origin/main`. Copy in the gitignored files you need (`.env.local`…), because a new worktree has none of them and nothing tells you.
    **Stage files by name, never `git add -A`.** A worktree whose files are behind its HEAD stages a revert nobody wrote. First run `git status`, then `git fetch`.
 6. **Take numbers carefully.** Before using a D, R or C number, check the logs **and open PRs**. Other sessions claim numbers in unmerged branches.
-7. **Finish properly.** The PR says `Closes #N` and lists the evidence. {{APPROVER}} merges. Add a PROGRESS session entry.
+7. **Finish properly.** Open the PR with `/v-start:visual-pr`. It says `Closes #N` and lists the evidence. {{APPROVER}} merges. Add a PROGRESS session entry.
 
 ## Hard rules
 

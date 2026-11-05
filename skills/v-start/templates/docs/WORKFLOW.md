@@ -10,7 +10,7 @@ How work gets picked up, specced, built, reviewed and landed.
 2. **Spec and plan** in `specs/N-name/spec.md` and `plan.md`. {{APPROVER}} approves both before any code.
 3. **Build** in your own worktree, off a fresh `origin/main`, on a branch named `feat/<name>`, `fix/<name>`, `docs/<name>` or `chore/<name>`. Stage files by name.
 4. **Check locally:** `{{CHECK}}`. A PR opens only when it's green.
-5. **PR** using the template. Its title is a Conventional Commit, because a squash-merge makes the title the commit on `main`.
+5. **PR**: open it and write its description with **`/v-start:visual-pr`**, on every PR. It writes why, what to watch for, a diagram of the change, and the evidence. The title is a Conventional Commit, because a squash-merge makes the title the commit on `main`.
 6. **Review and merge:** {{APPROVER}} reviews and merges. Nobody merges their own PR.
 7. **After merge:** add a PROGRESS entry and delete the branch.
 

@@ -90,7 +90,7 @@ Paste into **Hard rules**:
 - the preview link;
 - an `impeccable` critique with no unresolved high-severity findings.
 
-Take the screenshots in a real browser (gstack `browse`), so problems are seen, not guessed. Put them in the PR with the `pr-screenshots` and `screen-recording` skills.
+Take the screenshots in a real browser (gstack `browse`, or `ui-screenshots` for Playwright captures), so problems are seen, not guessed. Mark what changed with `image-annotations`. Put them in the PR with `pr-screenshots`, and make GIFs with `screen-recording`.
 
 **N. Design from the system that's already there.** Colour, type and spacing come from the theme's tokens. Never put a colour literal in a component. If a design needs something the system doesn't have, that's a scope decision for {{OWNER}}, not a licence to invent.
 ```

@@ -37,9 +37,10 @@ It also works on an existing repo: it reads what's there, never overwrites a fil
 | `/v-start` | Setting up the project: rules, ledgers, CI, stack preset |
 | `/v-discover` | Week 0: read the real thing, record facts, brief and mocks for stakeholders |
 | `/v-spec` | Spec and plan for one piece of work, then stop for approval |
-| `/visual-pr` | PR descriptions with diagrams of what changed |
+| `/v-start:visual-pr` | Every PR's description, with diagrams of what changed |
 | `ios-simulator` | Driving the iOS Simulator (Expo) |
 | `pr-screenshots`, `screen-recording` | Before/after images and GIFs in PRs |
+| `ui-screenshots`, `image-annotations` | Playwright captures of web apps; callouts and arrows on screenshots |
 
 ## Companions
 
