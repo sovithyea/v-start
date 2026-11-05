@@ -19,5 +19,7 @@ jobs:
           node-version: 24
       - name: 1. the plugin is valid
         run: npx --yes @anthropic-ai/claude-code@2.1.318 plugin validate .
-      - name: 2 and 3. placeholders and licenses
+      - name: 2 to 5. placeholders, licenses, installs, private context
         run: bash tools/check.sh
+      - name: each check still catches its fault
+        run: bash tools/check-faults.sh
