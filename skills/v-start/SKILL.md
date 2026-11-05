@@ -128,9 +128,15 @@ Check which ones are already installed, and skip those. Ask about the rest in on
 
 | Tool | Present if | Install |
 |---|---|---|
-| gstack | `~/.claude/skills/gstack` exists | `git clone --branch v1.96.0.0 --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack && git -C ~/.claude/skills/gstack rev-parse HEAD | grep -qx 6666b7296766f8e0c9f3cc44b70fd1eff6ad2e92 && (cd ~/.claude/skills/gstack && ./setup)` (needs Git and Bun; if Bun is missing, skip it and say so). Pinned to a release and its commit, so nothing upstream can change what users run. If the commit doesn't match, the tag was moved: delete the clone, don't run `./setup`, and tell the user |
+| gstack | `~/.claude/skills/gstack` exists | The command below the table. Needs Git and Bun; if Bun is missing, skip it and say so |
 | impeccable | `claude plugin list` shows `impeccable@impeccable` | `claude plugin marketplace add pbakaus/impeccable && claude plugin install impeccable@impeccable` |
 | ponytail | `claude plugin list` shows `ponytail@ponytail` | `claude plugin marketplace add DietrichGebert/ponytail && claude plugin install ponytail@ponytail` |
+
+gstack is pinned to a release and its commit, so nothing upstream can change what users run. It only runs when gstack is absent. If any step fails (a moved tag shows up as a wrong commit), it deletes the clone, so a half-done install never counts as present. Tell the user it failed.
+
+```bash
+[ ! -e ~/.claude/skills/gstack ] && { git clone --branch v1.96.0.0 --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack && git -C ~/.claude/skills/gstack rev-parse HEAD | grep -qx 6666b7296766f8e0c9f3cc44b70fd1eff6ad2e92 && (cd ~/.claude/skills/gstack && ./setup) || rm -rf ~/.claude/skills/gstack; }
+```
 
 If the permission system blocks an install, don't work around it. List the command for the user to run with `! <command>`. agent-reach (https://github.com/Panniantong/Agent-Reach) and treg (https://treg.to/tutorial, needs its own sign-up) are only listed in the report, never installed. In the report, say what was installed and what was skipped. New plugins load in the next session.
 

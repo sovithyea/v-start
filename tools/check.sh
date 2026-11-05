@@ -34,10 +34,10 @@ done
 #    shortcut: this checks the text only, until #7 tests what /v-start does.
 grep -qF '## 5. Companion tools (ask first)' "$skill/SKILL.md" || { echo "skills/v-start/SKILL.md lost its 'ask first' companion step (D004)"; fail=1; }
 if grep -niF 'install automatically' "$skill/SKILL.md"; then echo "skills/v-start/SKILL.md installs without asking again (D004)"; fail=1; fi
-pin() { grep -m1 'garrytan/gstack' "$1" | grep -oE -- '--branch [^ ]+|[0-9a-f]{40}' | tr '\n' ' '; }
+pin() { grep -m1 'garrytan/gstack' "$1" | grep -oE -- '--branch [^ ]+|rev-parse HEAD|[0-9a-f]{40}' | tr '\n' ' ' || true; }
 skill_pin=$(pin "$skill/SKILL.md"); readme_pin=$(pin "$root/README.md")
-if ! [[ "$skill_pin" =~ ^--branch\ [^\ ]+\ [0-9a-f]{40}\ $ ]] || [ "$skill_pin" != "$readme_pin" ]; then
-  echo "gstack pin differs or lacks a commit: SKILL.md '$skill_pin', README.md '$readme_pin'"; fail=1
+if ! [[ "$skill_pin" =~ ^--branch\ [^\ ]+\ rev-parse\ HEAD\ [0-9a-f]{40}\ $ ]] || [ "$skill_pin" != "$readme_pin" ]; then
+  echo "gstack pin differs, or lacks its commit check: SKILL.md '$skill_pin', README.md '$readme_pin'"; fail=1
 fi
 
 [ $fail -eq 0 ] && echo "check.sh: all guarantees hold"
