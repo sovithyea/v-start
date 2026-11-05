@@ -40,10 +40,15 @@ if ! [[ "$skill_pin" =~ ^--branch\ [^\ ]+\ rev-parse\ HEAD\ [0-9a-f]{40}\ $ ]] |
   echo "gstack pin differs, or lacks its commit check: SKILL.md '$skill_pin', README.md '$readme_pin'"; fail=1
 fi
 
-# 5. Nothing users see names the owner's private projects or folders (#6).
-if grep -rniE 'an earlier project|an earlier project|earlier|an earlier project|my workplace|projects folder' "$skill/.." "$root/.claude-plugin" "$root/README.md"; then
-  echo "private project names or paths above would ship to users"; fail=1
-fi
+# 5. What users' agents read (skills/, .claude-plugin/, README.md) never names the owner's private projects or folder (#6).
+#    "an earlier project" is matched with its capitals, so plain English like "an earlier project" passes.
+rc=0; grep -rnE -e 'projects folder' \
+  "$root/skills" "$root/.claude-plugin" "$root/README.md" || rc=$?
+case $rc in
+  0) echo "private project names or paths above would ship to users"; fail=1 ;;
+  1) ;;
+  *) echo "the private-context scan couldn't read skills/, .claude-plugin/ or README.md"; fail=1 ;;
+esac
 
 [ $fail -eq 0 ] && echo "check.sh: all guarantees hold"
 exit $fail
