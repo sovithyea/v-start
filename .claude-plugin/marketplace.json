@@ -1,0 +1,14 @@
+{
+  "name": "v-start",
+  "description": "Vithyea's project-start harness for Claude Code.",
+  "owner": {
+    "name": "Vithyea"
+  },
+  "plugins": [
+    {
+      "name": "v-start",
+      "source": "./",
+      "description": "Start a project with the agent harness: CLAUDE.md contract, ledgers, spec-before-code, issue-first workflow."
+    }
+  ]
+}
