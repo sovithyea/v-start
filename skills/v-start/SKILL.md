@@ -84,10 +84,11 @@ Anything unanswered stays visibly `TBD` and goes under **Open** in `docs/PRD.md`
 ## 4. Copy and fill
 
 ```bash
-rsync -a --ignore-existing {SKILLBASE}/templates/ <target>/
+if command -v rsync >/dev/null; then rsync -a --ignore-existing {SKILLBASE}/templates/ <target>/; else cp -Rn {SKILLBASE}/templates/. <target>/ || true; fi
+ls <target>/CLAUDE.md <target>/docs/PROFILE.md   # the copy really happened
 ```
 
-`--ignore-existing` never clobbers. (Don't use `cp -Rn`: on macOS it exits 1 when it skips a file, which stops a chain of commands.) In adopt mode, merge by hand any template whose file already exists.
+Both paths never clobber. `cp -Rn` is only the fallback: on macOS it exits 1 when it skips a file, which stops a chain of commands. That's why it ends in `|| true`, and why the `ls` checks the result. In adopt mode, merge by hand any template whose file already exists.
 
 Then turn the personal template into the real file: `[ -e CLAUDE.local.md ] && rm CLAUDE.local.template.md || mv CLAUDE.local.template.md CLAUDE.local.md`. The template has a different name because many people's global gitignore ignores `CLAUDE.local.md`, and that would keep it out of this plugin. For a new teammate (round 0 only), copy just `{SKILLBASE}/templates/CLAUDE.local.template.md` to `CLAUDE.local.md`.
 
@@ -109,7 +110,7 @@ Replace the placeholders:
 | `{{DONE}}`, `{{DEADLINE}}`, `{{PRIORITY}}` | From round 1c |
 | `{{EXPERIENCE}}`, `{{QUESTION_STYLE}}`, `{{REPLY_LENGTH}}`, `{{AUTONOMY}}` | From round 0, in `CLAUDE.local.md` |
 
-Check: `grep -rnE --exclude-dir=node_modules --exclude-dir=.git '\{\{[A-Z_]+\}\}' <target>` prints nothing. GitHub's `${{ … }}` is expected and isn't matched.
+Check: `grep -rnE --exclude-dir=node_modules --exclude-dir=.git '(^|[^$])\{\{[^}]*\}\}' <target>` prints nothing. GitHub's `${{ … }}` is expected and isn't matched.
 
 Then:
 

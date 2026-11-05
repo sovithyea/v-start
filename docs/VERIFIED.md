@@ -15,7 +15,8 @@ What has been observed, how, and when. Anything not observed goes under Unverifi
 | A global gitignore can ignore `CLAUDE.local.md`, so the template ships as `CLAUDE.local.template.md` | `git add` refused the file in this repo | 5 Nov |
 | On macOS, `cp -Rn` exits 1 when it skips an existing file | Adopt-mode run on this repo: the chain stopped after the copy | 5 Nov |
 | `CLAUDE.md` at the plugin root gives a validate warning ("not loaded as project context"). That's expected: it's for working on this repo, and users never load it | `claude plugin validate .` after the harness was added | 5 Nov |
-| `tools/check.sh` fails on a stray placeholder and on an uncredited skill | Self-test on a scratch copy with both faults injected | 5 Nov |
+| `tools/check.sh` fills the templates and add-ons, then fails on any leftover `{{…}}` (including `{{PROJECT_2}}` and `{{lower}}`) and on an uncredited skill, even one named like a credited one | Self-test on a scratch copy with the faults injected | 5 Nov |
+| The commit check skips `Merge…` and `Revert "…"` subjects, and still checks `revert:` and `Revert stuff` | Local test of the `case` pattern | 5 Nov |
 | On a GitHub runner: `claude plugin validate` works without signing in, gitleaks scanned 6 commits and found no leaks, and the commit check passed | PR #4 CI logs (runs 41946092639, 41946092598, 41946092593) | 5 Nov |
 
 ## Unverified
@@ -26,4 +27,5 @@ What has been observed, how, and when. Anything not observed goes under Unverifi
 ## Corrections
 
 - **C1:** The skill told agents to run `cp -Rn`, believing it was safe in adopt mode. On macOS it exits 1 when it skips a file, so chained steps stop. The copy is now `rsync -a --ignore-existing`.
+- **C3:** `CLAUDE.md` said guarantee 2 fills the templates, but `check.sh` only checked that placeholders were listed. Found by the code review of PR #4. `check.sh` now fills them.
 - **C2:** The solo-merge step pointed at "hard rule 4", but that rule had moved to 12. Fixed in 0.2.0 by naming the rule instead of its number.

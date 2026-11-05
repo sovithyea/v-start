@@ -12,7 +12,7 @@ Guidance for Claude Code (and every other agent) in this repo. Humans should sta
 **The guarantees** (enforced in CI by `.github/workflows/checks.yml`, not by care):
 
 1. **A release is never invalid.** `claude plugin validate .` passes on every PR.
-2. **No placeholders are left over.** The check copies the templates into a scratch folder, fills them in the way `/v-start` does, and fails if any `{{…}}` is left.
+2. **No placeholders are left over.** The check copies the templates and add-ons into a scratch folder, fills every placeholder in `/v-start`'s fill table, and fails if any `{{…}}` is left, whatever its spelling.
 3. **No unlicensed skills.** Every bundled skill v-start didn't write is listed in `THIRD_PARTY.md`.
 
 **Users run what we ship.** Anything in `skills/` reaches other people's machines on their next update, so a change there gets a headless trial (`claude -p "/v-start:v-start …" --plugin-dir .` in a scratch folder) before it merges.
