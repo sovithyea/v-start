@@ -12,7 +12,7 @@ How work gets picked up, specced, built, reviewed and landed.
 4. **Check locally:** `{{CHECK}}`. A PR opens only when it's green.
 5. **PR**: open it and write its description with **`/v-start:visual-pr`**, on every PR. It writes why, what to watch for, a diagram of the change, and the evidence. The title is a Conventional Commit, because a squash-merge makes the title the commit on `main`.
 6. **Review and merge:** {{APPROVER}} reviews and merges. Nobody merges their own PR.
-7. **After merge:** add a PROGRESS entry and delete the branch.
+7. **After merge:** add a PROGRESS entry and delete the branch. When a spec or a phase is now complete, run the check-in from `CLAUDE.md` (Personalisation).
 
 ## Commits
 

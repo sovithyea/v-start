@@ -18,6 +18,21 @@ mkdir my-project && cd my-project && claude
 
 It also works on an existing repo: it reads what's there, never overwrites a file, and merges the harness in.
 
+## It gets to know you
+
+`/v-start` asks about **you** (your experience, how you like questions, reply length, autonomy) and about **the project** (goals, deadline, what matters most, platforms, people).
+
+| Saved to | Holds | Shared? |
+|---|---|---|
+| `docs/PROFILE.md` | The project: goals, deadline, priorities, platforms, people, and a check-in log | Yes, it's in git |
+| `CLAUDE.local.md` | You: how you like to work, plus preferences learned over time | No, it's gitignored |
+
+It keeps up as you go:
+- Every command reads both files and adapts to them.
+- When you correct an agent, it offers to save the correction as a preference.
+- After each spec ships, it checks in with a few questions.
+- Running `/v-start` again refreshes the profile instead of setting up from scratch.
+
 ## What you get
 
 | Piece | What it does |

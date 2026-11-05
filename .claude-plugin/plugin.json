@@ -1,6 +1,6 @@
 {
   "name": "v-start",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Start a project with the agent harness from Athena, Yummers and Be At Home: CLAUDE.md contract, decision/verified/risk ledgers, spec-before-code, issue-first workflow.",
   "author": { "name": "Vithyea" },
   "license": "MIT"

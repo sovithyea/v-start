@@ -11,7 +11,7 @@ Learn what's really there before writing spec 1. Every claim gets a source; noth
 
 ## 1. Read the ledgers
 
-`CLAUDE.md`, `docs/PROGRESS.md`, `docs/PRD.md`, `docs/VERIFIED.md`. If they don't exist, offer `/v-start` first.
+`CLAUDE.md`, `docs/PROFILE.md` and `CLAUDE.local.md` (adapt to them: the experience level sets how much you explain, the priority sets the trade-offs, and the platforms set where things get checked), `docs/PROGRESS.md`, `docs/PRD.md`, `docs/VERIFIED.md`. If they don't exist, offer `/v-start` first.
 
 ## 2. Ask what to discover (multiSelect, as many rounds as needed)
 

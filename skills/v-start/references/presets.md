@@ -2,7 +2,7 @@
 
 Offer these only after the harness is in place and the stack is recorded as **D002**. Each preset adds one dependency set, so it's a decision. Run the scaffold into the repo root, keep the harness files, and set `{{CHECK}}` in `CLAUDE.md` and `docs/WORKFLOW.md` to the preset's check line.
 
-Copy the preset's CI file to `.github/workflows/checks.yml`. Scaffolders that write their own `README.md` or `CLAUDE.md`/`AGENTS.md` must not replace ours: move their content into ours, then delete theirs.
+Copy the preset's CI file to `.github/workflows/checks.yml`. Scaffolders that write their own `README.md`, `CLAUDE.md`, `AGENTS.md` or `.gitignore` must not replace ours: merge their content into ours (keep `CLAUDE.local.md` ignored), then delete theirs.
 
 ## Next.js + Supabase + Vercel  *(Be At Home, Athena web)*
 
