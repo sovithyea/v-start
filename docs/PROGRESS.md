@@ -35,7 +35,7 @@ The only current record of where things stand. Update it at the end of every wor
 - PR #14 (#10) merged as `d94e74e`.
 - **#15 (D005), version 0.5.0:** Vith asked that every question be an MCQ, never text in a reply, and that no choice be made before every answer it needs is in. Both rules are now in `/v-start`, `/v-spec`, `/v-discover` and the project template. A run that can't ask puts its questions under Open in `docs/PRD.md`, and refresh mode asks those first. Headless trials of all three commands showed no questions in the reply. The open questions went to PRD Open, or for `/v-spec` to the spec's Open questions table.
 - PR #16 (#15) merged as `6db7259`. The installed plugin was updated to 0.5.0.
-- **#7 cost worked out** (D006, figures on the issue): Sonnet 5.5, PRs that touch `skills/`, 3 cases × 1 run, about $1.04 per trigger. Vith said no spend yet, so #7 waits on a monthly cap.
+- **#7 cost worked out** (D006; the measured figures are in VERIFIED): Sonnet 5.5, PRs that touch `skills/`, 3 cases × 1 run, about $1.04 per trigger. Vith said no spend yet, so #7 waits on a monthly cap.
 - **Next:** #8 (icon, Vith picks), #3 (a friend's first run), and #7 once there's a budget.
 
 ### 5 Nov 2026 — v-start built, released and used on itself (Vith)
