@@ -6,7 +6,7 @@ What has been observed, how, and when. Anything not observed goes under Unverifi
 
 | Fact | How it was observed (file, command or URL) | When |
 |---|---|---|
-| The plugin passes validation, with one warning: no icon | `claude plugin validate .` | 5 Nov |
+| The plugin passes validation, with one warning: no icon. Fixed by #8, see the icon row below | `claude plugin validate .` | 5 Nov |
 | Installing from GitHub gives 7 skills (now 9) and about 770 tokens of always-on cost | `claude plugin details v-start@v-start` | 5 Nov |
 | A fresh `/v-start` run fills every placeholder and gitignores `CLAUDE.local.md` | Headless trials with `--plugin-dir` in the scratchpad | 5 Nov |
 | A refresh run changes only what changed, and logs the check-in | Headless trial on the same folder | 5 Nov |
