@@ -97,3 +97,11 @@ GitHub Support is not asked to remove cached views or PR refs. Old PR pages on G
 v-start's icon is a dark terminal window showing `/v` and a coral cursor, on a blue-to-violet gradient. It's a full-bleed 1024×1024 PNG at `.claude-plugin/icon.png`, with no transparent corners.
 
 **Why:** Vith picked it from three drafts, because it says "a Claude Code command" at a glance and still reads at 32 px. It's a decision because the developer portal takes the icon only the first time the plugin is saved there, so changing it later won't update the listing. (#8)
+
+## D010 — List v-start in the Claude plugin directory
+
+*6 Nov 2026 · Vith*
+
+v-start is submitted to the Claude plugin directory at claude.ai/directory/manage, under the permanent name `v-start`, from the repo root of `sovithyea/v-start`. The listing's short description is the plain-language one now in `plugin.json`. Vith submits, because the portal needs his paid account and his own answers to its data-handling and compliance questions.
+
+**Why:** Vith asked to list it. The name stays `v-start` because it matches the command, the repo and the install lines in the LinkedIn post. The portal fixes the name, the repo and the icon (D009) on submission. (#23)

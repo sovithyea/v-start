@@ -1,7 +1,7 @@
 {
   "name": "v-start",
-  "version": "0.5.1",
-  "description": "Start a project with a proven agent harness: CLAUDE.md contract, decision/verified/risk ledgers, spec-before-code, issue-first workflow.",
+  "version": "0.5.2",
+  "description": "Set up any project so AI agents work in it safely: rules, a decision log, spec before code and CI checks, tailored to you through a few multiple-choice questions.",
   "author": { "name": "Vithyea" },
   "license": "MIT"
 }
