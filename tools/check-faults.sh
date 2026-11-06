@@ -6,6 +6,8 @@ set -uo pipefail
 repo=$(cd "$(dirname "$0")/.." && pwd)
 work=$(mktemp -d); trap 'rm -rf "$work"' EXIT
 bad=0
+# Guarantee 5 gets made-up names here, so this file never holds the real list.
+export PRIVATE_NAMES='[Zz]ebracorn|Quokka ?Works|Desktop/hideout'
 
 sums() { (cd "$work/r" && find . -type f -exec cksum {} + | sort | cksum); }
 
@@ -43,11 +45,16 @@ fault "README gstack tag differs" "gstack pin differs" "perl -pi -e 's/--branch 
 fault "gstack commit check gone" "gstack pin differs" "perl -pi -e 's/ && git -C \S+ rev-parse HEAD \| grep -qx [0-9a-f]{40}//' skills/v-start/SKILL.md README.md"
 
 # 5. private context
-fault "private name in a skill" "private project names" "echo 'Used in Yummers.' >> skills/v-spec/SKILL.md"
-fault "private name in a template" "private project names" "echo 'Be At Home' >> skills/v-start/templates/AGENTS.md"
-fault "owner's folder in README" "private project names" "echo '~/Desktop/projects' >> README.md"
-fault "plain English" pass "echo 'The user may not be at home.' >> README.md"
+fault "private name in a skill" "private project names" "echo 'Used in Zebracorn.' >> skills/v-spec/SKILL.md"
+fault "private name in a template" "private project names" "echo 'Quokka Works' >> skills/v-start/templates/AGENTS.md"
+fault "owner's folder in README" "private project names" "echo '~/Desktop/hideout' >> README.md"
+fault "plain English" pass "echo 'A zebra in the corn.' >> README.md"
 fault "scanned folder missing" "couldn't read" "rm -rf .claude-plugin"
+
+# With no list at all, guarantee 5 must say it skipped, and the rest must still pass.
+rm -rf "$work/r" && mkdir "$work/r" && cp -R "$repo/skills" "$repo/.claude-plugin" "$repo/README.md" "$repo/THIRD_PARTY.md" "$work/r/"
+out=$(PRIVATE_NAMES= bash "$repo/tools/check.sh" "$work/r" 2>&1) && grep -qF "guarantee 5 skipped" <<<"$out" &&
+  echo "ok    no list: guarantee 5 skips" || { echo "FAIL  no list: guarantee 5 skips"; bad=1; }
 
 [ $bad -eq 0 ] && echo "check-faults.sh: every check in check.sh catches its fault"
 exit $bad

@@ -25,7 +25,7 @@ The only current record of where things stand. Update it at the end of every wor
 - A second review found: the `|` in the gstack command split its Markdown table cell, a failed check left the clone behind, `check.sh` could exit silently, and the pin check didn't require the commit check. All fixed: the command now sits in its own code block, runs only when gstack is absent, and removes the clone on any failure. Committed fault tests for `check.sh` are #10 (hard rule 6).
 - Headless trial: no install call, and it asked instead (see VERIFIED). Not tested: the skip-if-present step (the trial's permissions blocked it) and a person picking "None" or some tools.
 - PR #9 (#5) merged as `59321bd`, after two `/code-review` passes. The installed plugin was updated to 0.4.2.
-- **#6:** removed the private project names and `~/Desktop/projects` from everything users see. Round 1b now searches only the folders next to the repo, or takes a typed path. New guarantee 5 in `check.sh` keeps the names out. Version 0.4.3.
+- **#6:** removed the private project names and the owner's folder path from everything users see. Round 1b now searches only the folders next to the repo, or takes a typed path. New guarantee 5 in `check.sh` keeps the names out. Version 0.4.3.
 - The #6 trial found that the skill's placeholder check matches nothing inside Claude Code (see VERIFIED). That is #11.
 - PR #12 (#6) merged as `d1b63c4`, after a `/code-review` pass and its fixes. The installed plugin was updated to 0.4.3.
 - **#11 (C4), PR #13:** the skill's placeholder check now calls `command grep`, which skips Claude Code's ugrep shell function, with the original pattern. `check.sh` fails if step 4 stops using it. Version 0.4.4. A first, shorter-pattern fix was dropped after `/code-review`: it flagged any `{{`, which hurts adopt mode in repos with Helm or Jinja files.
@@ -36,11 +36,14 @@ The only current record of where things stand. Update it at the end of every wor
 - **#15 (D005), version 0.5.0:** Vith asked that every question be an MCQ, never text in a reply, and that no choice be made before every answer it needs is in. Both rules are now in `/v-start`, `/v-spec`, `/v-discover` and the project template. A run that can't ask puts its questions under Open in `docs/PRD.md`, and refresh mode asks those first. Headless trials of all three commands showed no questions in the reply. The open questions went to PRD Open, or for `/v-spec` to the spec's Open questions table.
 - PR #16 (#15) merged as `6db7259`. The installed plugin was updated to 0.5.0.
 - **#7 cost worked out** (D006; the measured figures are in VERIFIED): Sonnet 5.5, PRs that touch `skills/`, 3 cases × 1 run, about $1.04 per trigger. Vith said no spend yet, so #7 waits on a monthly cap.
-- **Next:** #8 (icon, Vith picks), #3 (a friend's first run), and #7 once there's a budget.
+- PR #17 merged as `a0a4c90`.
+- **LinkedIn prep:** a fresh install from GitHub works (VERIFIED). Vith will post with a screen recording, calling v-start early so strangers become the #3 testers.
+- **#18 (D007):** the private project names come out of every file and, next, the whole git history. Guarantee 5's list moved to a gitignored `.private-names` and the `PRIVATE_NAMES` secret. The README says what you need. The reference projects moved to Vith's `CLAUDE.local.md`.
+- **Next:** merge the #18 PR, rewrite the history and force-push, edit #1, #6 and #12, send the GitHub Support request, then add the repo topics. Then #8, #3, and #7 once there's a budget.
 
 ### 5 Nov 2026 — v-start built, released and used on itself (Vith)
 
-- Read the hard rules and harness docs in Rocket Athena, Athena, yummers, beathome-platform and the beathome-field-app harness, then built the plugin. Every choice was asked as an MCQ (D003).
+- Read the hard rules and harness docs in Vith's earlier projects, then built the plugin. Every choice was asked as an MCQ (D003).
 - Releases: 0.1.0 (harness), 0.2.0 (companions install automatically), 0.3.0 (visual-pr on every PR, PR #1), 0.4.0 (personalisation, PR #2). Installed from GitHub on Vith's machine.
 - Headless trials: a fresh setup, a refresh, and a setup with personalisation. Each one found something, and each fix is in VERIFIED.
 - Ran `/v-start` on this repo in adopt mode. This was the first run with real MCQs answered by a person.

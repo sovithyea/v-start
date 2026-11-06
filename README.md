@@ -2,6 +2,10 @@
 
 Start any project with a proven agent harness. Type `/v-start`, answer a few multiple-choice rounds, and the repo is ready for agents to work in safely.
 
+## You need
+
+Claude Code and git. The GitHub CLI (`gh`) is only needed if you want `/v-start` to create the repo, labels, board and first issue for you.
+
 ## Install
 
 ```

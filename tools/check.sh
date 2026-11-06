@@ -43,15 +43,20 @@ if ! [[ "$skill_pin" =~ ^--branch\ [^\ ]+\ rev-parse\ HEAD\ [0-9a-f]{40}\ $ ]] |
   echo "gstack pin differs, or lacks its commit check: SKILL.md '$skill_pin', README.md '$readme_pin'"; fail=1
 fi
 
-# 5. What users' agents read (skills/, .claude-plugin/, README.md) never names the owner's private projects or folder (#6).
-#    "Be At Home" is matched with its capitals, so plain English like "be at home" passes.
-rc=0; grep -rnE -e '[Aa]thena|[Yy]ummers|Be ?At ?Home|[Bb]eathome|Rocket Academy|Desktop/projects' \
-  "$root/skills" "$root/.claude-plugin" "$root/README.md" || rc=$?
-case $rc in
-  0) echo "private project names or paths above would ship to users"; fail=1 ;;
-  1) ;;
-  *) echo "the private-context scan couldn't read skills/, .claude-plugin/ or README.md"; fail=1 ;;
-esac
+# 5. What users' agents read (skills/, .claude-plugin/, README.md) never names the owner's private projects or folder (#6, #18).
+#    The names live outside the repo: PRIVATE_NAMES (CI secret), or a gitignored .private-names file, one pattern per line.
+private="${PRIVATE_NAMES:-}"
+[ -z "$private" ] && [ -f "$root/.private-names" ] && private=$(grep -v '^[[:space:]]*$' "$root/.private-names" | paste -sd'|' - || true)
+if [ -z "$private" ]; then
+  echo "guarantee 5 skipped: no PRIVATE_NAMES or .private-names (only the owner has the list)"
+else
+  rc=0; grep -rnE -e "$private" "$root/skills" "$root/.claude-plugin" "$root/README.md" || rc=$?
+  case $rc in
+    0) echo "private project names or paths above would ship to users"; fail=1 ;;
+    1) ;;
+    *) echo "the private-context scan couldn't read skills/, .claude-plugin/ or README.md"; fail=1 ;;
+  esac
+fi
 
 [ $fail -eq 0 ] && echo "check.sh: all guarantees hold"
 exit $fail
