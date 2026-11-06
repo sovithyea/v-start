@@ -8,7 +8,7 @@
     {
       "name": "v-start",
       "source": "./",
-      "description": "Start a project with the agent harness: CLAUDE.md contract, ledgers, spec-before-code, issue-first workflow."
+      "description": "Set up any project so AI agents work in it safely: rules, a decision log, spec before code and CI checks, tailored to you through a few multiple-choice questions."
     }
   ]
 }
