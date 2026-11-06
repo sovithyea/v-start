@@ -1,6 +1,6 @@
 {
   "name": "v-start",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Set up any project so AI agents work in it safely: rules, a decision log, spec before code and CI checks, tailored to you through a few multiple-choice questions.",
   "author": { "name": "Vithyea" },
   "license": "MIT"

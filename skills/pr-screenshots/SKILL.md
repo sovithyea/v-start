@@ -1,7 +1,9 @@
 ---
 name: pr-screenshots
-description: 'Embed before/after screenshots and annotated images in pull request descriptions. Covers PR description patterns, image upload for Azure DevOps and GitHub, and sizing best practices.'
+description: 'Embed before/after screenshots and annotated images in pull request descriptions. Covers PR description patterns, image upload for GitHub, and sizing best practices.'
 ---
+
+<!-- From github/awesome-copilot (MIT). Modified for v-start, see THIRD_PARTY.md and D011. -->
 
 # PR Screenshots
 
@@ -69,46 +71,6 @@ For PRs with several visual changes, use separate before/after pairs with headin
 
 ## Uploading Images
 
-### Azure DevOps
-
-Upload images as PR attachments via the REST API:
-
-```powershell
-$token = az account get-access-token `
-    --resource "499b84ac-1321-427f-aa17-267ca6975798" `
-    --query accessToken -o tsv
-
-$base = "https://{org}.visualstudio.com/{projectId}/_apis/git/repositories/{repoId}"
-$url = "$base/pullRequests/{prId}/attachments/screenshot.png?api-version=7.1-preview.1"
-
-# Use HttpClient — Invoke-RestMethod can corrupt binary data
-$client = New-Object System.Net.Http.HttpClient
-$client.DefaultRequestHeaders.Authorization = `
-    New-Object System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", $token)
-$content = New-Object System.Net.Http.ByteArrayContent(
-    , [System.IO.File]::ReadAllBytes("screenshot.png")
-)
-$content.Headers.ContentType = `
-    [System.Net.Http.Headers.MediaTypeHeaderValue]::new("application/octet-stream")
-$resp = $client.PostAsync($url, $content).Result
-```
-
-Reference in the PR description:
-
-```markdown
-![description](https://{org}.visualstudio.com/{projectId}/_apis/git/repositories/{repoId}/pullRequests/{prId}/attachments/screenshot.png)
-```
-
-**Azure DevOps gotchas:**
-
-- **Use `{org}.visualstudio.com` NOT `dev.azure.com/{org}`** — AzDO's markdown renderer uses `.visualstudio.com`. The `dev.azure.com` format loads noticeably slower
-- Use `POST` not `PUT` (PUT returns 405)
-- API version must be `7.1-preview.1`
-- Can't re-upload with the same filename — use a new name (e.g. `screenshot-v2.png`)
-- Use `HttpClient` not `Invoke-RestMethod` — IRM can corrupt binary data
-- Repo-relative paths don't work in PR descriptions — must use full URLs
-- Don't commit images to the branch just for PR screenshots
-
 ### GitHub
 
 > **⚠️ Work in progress.** GitHub's drag-and-drop image upload uses internal endpoints that require browser cookies. There's no clean public API for uploading images to PR descriptions yet.
@@ -126,5 +88,4 @@ Reference in the PR description:
 ## Limitations
 
 - GitHub image upload requires workarounds (no public API for PR description images)
-- Azure DevOps attachment filenames can't be reused — plan naming ahead
 - Very large images (>10MB) may not render inline on some platforms
