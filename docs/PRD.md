@@ -14,7 +14,7 @@ What Vith has confirmed, kept separate from what is still open or assumed. Nothi
 ## Open
 
 - Who is the first friend to try it, and when?
-- Should v-start be listed in a public plugin directory? (It needs an icon; see VERIFIED.)
+- Should v-start be listed in a public plugin directory? The icon is ready (D009).
 
 ## Assumed (needs confirming)
 

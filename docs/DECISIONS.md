@@ -89,3 +89,11 @@ When #7 is built, the behaviour test runs `claude plugin eval --model claude-son
 GitHub Support is not asked to remove cached views or PR refs. Old PR pages on GitHub can still show diffs from before the rewrite. This replaces D007's Support step.
 
 **Why:** Vith, 6 Nov 2026: "no need github support". (#18)
+
+## D009 — The plugin icon
+
+*6 Nov 2026 · Vith*
+
+v-start's icon is a dark terminal window showing `/v` and a coral cursor, on a blue-to-violet gradient. It's a full-bleed 1024×1024 PNG at `.claude-plugin/icon.png`, with no transparent corners.
+
+**Why:** Vith picked it from three drafts, because it says "a Claude Code command" at a glance and still reads at 32 px. It's a decision because the developer portal takes the icon only the first time the plugin is saved there, so changing it later won't update the listing. (#8)
