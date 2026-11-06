@@ -79,6 +79,19 @@ To install gstack by hand at the pinned release (if anything fails, the clone is
 [ ! -e ~/.claude/skills/gstack ] && { git clone --branch v1.96.0.0 --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack && git -C ~/.claude/skills/gstack rev-parse HEAD | grep -qx 6666b7296766f8e0c9f3cc44b70fd1eff6ad2e92 && (cd ~/.claude/skills/gstack && ./setup) || rm -rf ~/.claude/skills/gstack; }
 ```
 
+## Data and privacy
+
+v-start collects nothing, and it has no servers or telemetry. With your yes, it uses your own tools and accounts to reach these services:
+
+| Service | When | What goes there |
+|---|---|---|
+| GitHub, through `gh` | You choose to create the repo, labels, board or first issue | Your project's files and those items, under your GitHub account |
+| npm, through `npx` | You choose to scaffold a stack | Package downloads |
+| GitHub | You choose to install helper tools (gstack, impeccable, ponytail) | Downloads of those tools |
+| GitHub Actions | The CI files it adds run in your repo | A gitleaks download, to scan for secrets |
+
+Everything else stays in your project. See [PRIVACY.md](PRIVACY.md).
+
 ## Working on v-start
 
 The rules for agents (and people) working on this repo are in [`CLAUDE.md`](CLAUDE.md), and where things stand is in [`docs/PROGRESS.md`](docs/PROGRESS.md). v-start uses its own harness.
