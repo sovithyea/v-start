@@ -45,16 +45,25 @@ fi
 
 # 5. What users' agents read (skills/, .claude-plugin/, README.md) never names the owner's private projects or folder (#6, #18).
 #    The names live outside the repo: PRIVATE_NAMES (CI secret), or a gitignored .private-names file, one pattern per line.
-private="${PRIVATE_NAMES:-}"
-[ -z "$private" ] && [ -f "$root/.private-names" ] && private=$(grep -v '^[[:space:]]*$' "$root/.private-names" | paste -sd'|' - || true)
-if [ -z "$private" ]; then
-  echo "guarantee 5 skipped: no PRIVATE_NAMES or .private-names (only the owner has the list)"
+#    It prints file names only, never the matching lines, so a hit can't put a name in a public CI log.
+pats="$tmp/private-names"
+{ [ -n "${PRIVATE_NAMES:-}" ] && printf '%s
+' "$PRIVATE_NAMES" || cat "$root/.private-names" 2>/dev/null || true; } |
+  tr -d '
+' | grep -v '^[[:space:]]*$' > "$pats" || true
+if [ ! -s "$pats" ]; then
+  if [ "${REQUIRE_PRIVATE_NAMES:-}" = true ]; then
+    echo "guarantee 5 has no list: the PRIVATE_NAMES secret is missing on this repo"; fail=1
+  else
+    echo "guarantee 5 skipped: no PRIVATE_NAMES or .private-names (only the owner has the list)"
+  fi
 else
-  rc=0; grep -rnE -e "$private" "$root/skills" "$root/.claude-plugin" "$root/README.md" || rc=$?
+  rc=0; hits=$(grep -rlE -f "$pats" "$root/skills" "$root/.claude-plugin" "$root/README.md" 2>/dev/null) || rc=$?
   case $rc in
-    0) echo "private project names or paths above would ship to users"; fail=1 ;;
+    0) printf '%s
+' "$hits"; echo "private project names or paths are in the files above and would ship to users"; fail=1 ;;
     1) ;;
-    *) echo "the private-context scan couldn't read skills/, .claude-plugin/ or README.md"; fail=1 ;;
+    *) echo "the private-context scan failed: a path is missing or a pattern in the list is bad"; fail=1 ;;
   esac
 fi
 

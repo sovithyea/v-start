@@ -75,7 +75,7 @@ When #7 is built, the behaviour test runs `claude plugin eval --model claude-son
 
 - Every current file and every commit stops naming Vith's earlier private projects and local folder paths. They become "my earlier projects" or similar.
 - **One-off exception to hard rule 4:** D001's "Why" was reworded to drop the names. Its meaning is unchanged. No other entry was rewritten.
-- History was rewritten with `git filter-repo` and force-pushed, and the old remote branches were deleted. GitHub Support is asked to remove cached PR views.
-- Guarantee 5's list of names moved out of the repo, into a gitignored `.private-names` file and the `PRIVATE_NAMES` CI secret. Without it, the check skips with a notice.
+- History is rewritten with `git filter-repo` and force-pushed, and the old remote branches are deleted, as part 2 of #18 once the current files are clean. GitHub Support is then asked to remove cached PR views.
+- Guarantee 5's list of names moved out of the repo, into a gitignored `.private-names` file and the `PRIVATE_NAMES` CI secret. Without it, the check skips with a notice, except on this repo's own CI, where a missing secret fails. A hit prints file names only, so a name never reaches a public CI log.
 
 **Why:** v-start is being shared publicly. Vith chose a full scrub over leaving the names in old files and commits. (#18)
