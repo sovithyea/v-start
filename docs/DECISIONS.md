@@ -56,7 +56,7 @@ v-start ships as a plugin from `sovithyea/v-start`, installed with `/plugin mark
 
 - In `/v-start`, `/v-spec` and `/v-discover`, every question goes to the user as an AskUserQuestion MCQ. None is written as text in a reply, including in the final reports.
 - Before making a choice, or building on one, an agent asks until it has every answer the choice needs. It never fills a gap with a default.
-- When a question can't be asked (a headless run), it goes under Open in `docs/PRD.md` as TBD, to be asked in the next live session.
+- When a question can't be asked (AskUserQuestion isn't available or errors, as in a headless run), it goes under Open in `docs/PRD.md` as TBD, to be asked in the next live session. For `/v-spec` it goes in the spec's Open questions table. An unanswered placeholder gets TBD, never a guess.
 - The project template carries both rules. A person who picked "chat" in round 0 still gets a short list; the v-start commands always use MCQ.
 
 **Why:** Vith, 6 Nov 2026: "claude sometimes replies back with a bunch of non mcq questions in the outputs, these should be mcq questions" and "never make a choice without getting all u need to build it". This extends D003's "every choice is asked as multiple choice". (#15)

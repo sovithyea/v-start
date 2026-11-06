@@ -7,7 +7,7 @@ description: Write the spec and plan for one piece of work in a v-start project 
 
 Turn one piece of work into a `spec.md` and a `plan.md` that the approver can say yes to. **No application code in this command** (hard rule 1). This is Opus work (hard rule 14).
 
-**Ask every choice as AskUserQuestion multiple choice**, in as many rounds as needed, with the recommended option first. Keep the prose short. **Never write a question in a reply**: if it needs an answer, it's an MCQ. **Get everything before you choose**: ask until you have every answer a choice needs. In a headless run, put the questions under **Open** in `docs/PRD.md` instead of listing them.
+**Ask every choice as AskUserQuestion multiple choice**, in as many rounds as needed, with the recommended option first. Keep the prose short. **Never write a question in a reply**: if it needs an answer, it's an MCQ. **Get everything before you choose**: ask until you have every answer a choice needs. If AskUserQuestion isn't available or returns an error, put the questions in the spec's Open questions table instead of listing them.
 
 ## 1. Read first
 
