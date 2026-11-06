@@ -21,8 +21,8 @@ The three commands follow the order you start projects in: **`/v-start`** (rules
 **Every choice goes to the user as AskUserQuestion multiple choice: as many rounds as it takes, up to 4 questions a round.** Put the recommended option first, marked "(Recommended)". Keep descriptions to one plain line. Free-text answers (the name, the one-liner) go in as an option too, like "I'll type it", and the user picks Other. Don't write paragraphs for the user to read, and never pick an answer on their behalf.
 
 - **Never write a question in a reply.** No list of questions, and no "Should I…?" in prose. If it needs an answer, it's an AskUserQuestion MCQ.
-- **Get everything before you choose.** Before you make a choice, or build on one, ask until you have every answer it needs. Never fill a gap with a default.
-- **If you can't ask** (a headless run), don't list the questions in the reply. Write each one under **Open** in `docs/PRD.md` as `TBD`, to be asked as an MCQ in the next live session.
+- **Get everything before you choose.** Before you make a choice, or build on one, ask until you have every answer it needs. Never fill a gap with a default: a placeholder whose answer isn't in gets `TBD`, never a guess.
+- **If you can't ask** (AskUserQuestion isn't available or returns an error, as in a headless run), don't list the questions in the reply. Write each one under **Open** in `docs/PRD.md` as `TBD`, to be asked as an MCQ in the next live session.
 
 ## 1. Look before writing
 
@@ -30,7 +30,7 @@ Check the target directory (the cwd unless the user names one): `git status`, `l
 
 - **Empty** → greenfield. `git init` if needed.
 - **Has code or docs** → adopt mode. Read the existing `CLAUDE.md`, `README.md` and the package manifest. **Never overwrite a file.** Merge the harness in, keep every existing rule, and show the user what you added.
-- **Already has the harness** (`docs/PROFILE.md` exists) → **refresh mode**. Don't copy the templates again. Read `docs/PROFILE.md`, `CLAUDE.local.md` and PROGRESS, then show a 5-line summary of the profile. If `docs/PRD.md` has `TBD` items under **Open** (from a run that couldn't ask), ask those as MCQs first, using the matching rounds in section 2, and update the files they belong to. Then ask (multiSelect) what changed: me / goals and deadline / users, platforms and people / stack and add-ons. Re-ask only those rounds. Update the files in place, add a line to the check-in log, commit with the files staged by name (`docs: refresh the project profile`), and stop.
+- **Already has the harness** (`docs/PROFILE.md` exists) → **refresh mode**. Don't copy the templates again. Read `docs/PROFILE.md`, `CLAUDE.local.md` and PROGRESS, then show a 5-line summary of the profile. If `docs/PRD.md` has `TBD` items under **Open** (from a run that couldn't ask), ask those as MCQs first (with the matching round in section 2 where there is one), and update the files they belong to. Then ask (multiSelect) what changed: me / goals and deadline / users, platforms and people / stack and add-ons. Re-ask only those rounds. Update the files in place, add a line to the check-in log, commit with the files staged by name (`docs: refresh the project profile`), and stop.
 - **The harness exists, but this person has no `CLAUDE.local.md`** (a new teammate) → run round 0 only and write their `CLAUDE.local.md`.
 
 ## 2. Interview (MCQ rounds)
@@ -159,7 +159,7 @@ The local commit needs no question. Stage files by name: `chore: start the proje
 
 ## 8. Report (short)
 
-A table of the files created or merged and the add-ons applied. Ask each open `TBD` as an MCQ now. Whatever can't be asked stays under **Open** in `docs/PRD.md`. Then the next step, as an MCQ:
+A table of the files created or merged and the add-ons applied. Ask each `TBD` the user didn't choose to leave open as an MCQ now. The rest stays under **Open** in `docs/PRD.md`. Then the next step, as an MCQ:
 
 - **`/v-discover`** (Recommended when there's an existing system, data or a client to learn from): week 0 research, VERIFIED facts, and mocks for stakeholders.
 - **`/v-spec`**: write spec 1 for approval.
