@@ -2,7 +2,8 @@
 
 | Skill | Source | License |
 |---|---|---|
-| `skills/pr-screenshots`, `skills/screen-recording`, `skills/ui-screenshots`, `skills/image-annotations` | [github/awesome-copilot](https://github.com/github/awesome-copilot), unmodified | MIT |
+| `skills/screen-recording`, `skills/ui-screenshots`, `skills/image-annotations` | [github/awesome-copilot](https://github.com/github/awesome-copilot), unmodified | MIT |
+| `skills/pr-screenshots` | [github/awesome-copilot](https://github.com/github/awesome-copilot), modified: the Azure DevOps upload section is removed | MIT |
 | `skills/visual-pr` | Adapted from [humanlayer/skills](https://github.com/humanlayer/skills) | MIT |
 # Third-party licenses
 
