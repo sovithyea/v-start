@@ -47,10 +47,8 @@ fi
 #    The names live outside the repo: PRIVATE_NAMES (CI secret), or a gitignored .private-names file, one pattern per line.
 #    It prints file names only, never the matching lines, so a hit can't put a name in a public CI log.
 pats="$tmp/private-names"
-{ [ -n "${PRIVATE_NAMES:-}" ] && printf '%s
-' "$PRIVATE_NAMES" || cat "$root/.private-names" 2>/dev/null || true; } |
-  tr -d '
-' | grep -v '^[[:space:]]*$' > "$pats" || true
+{ [ -n "${PRIVATE_NAMES:-}" ] && printf '%s\n' "$PRIVATE_NAMES" || cat "$root/.private-names" 2>/dev/null || true; } |
+  tr -d '\r' | grep -v '^[[:space:]]*$' > "$pats" || true
 if [ ! -s "$pats" ]; then
   if [ "${REQUIRE_PRIVATE_NAMES:-}" = true ]; then
     echo "guarantee 5 has no list: the PRIVATE_NAMES secret is missing on this repo"; fail=1
@@ -60,8 +58,7 @@ if [ ! -s "$pats" ]; then
 else
   rc=0; hits=$(grep -rlE -f "$pats" "$root/skills" "$root/.claude-plugin" "$root/README.md" 2>/dev/null) || rc=$?
   case $rc in
-    0) printf '%s
-' "$hits"; echo "private project names or paths are in the files above and would ship to users"; fail=1 ;;
+    0) printf '%s\n' "$hits"; echo "private project names or paths are in the files above and would ship to users"; fail=1 ;;
     1) ;;
     *) echo "the private-context scan failed: a path is missing or a pattern in the list is bad"; fail=1 ;;
   esac
