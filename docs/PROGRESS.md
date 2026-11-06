@@ -2,7 +2,7 @@
 
 The only current record of where things stand. Update it at the end of every working session.
 
-**Last updated:** 6 Nov 2026. 0.4.4 is released and installed: `/v-start` asks before installing companion tools (#5), ships no private context (#6), and its placeholder check works inside Claude Code (#11). `check.sh` has committed fault tests (#10). 0.5.0 (#15) makes every question an MCQ. Open: #3, #8, and #7 (waiting on a budget, D006).
+**Last updated:** 6 Nov 2026 (afternoon). The repo and its history no longer name the private projects (#18, D007). 0.4.4 is released and installed: `/v-start` asks before installing companion tools (#5), ships no private context (#6), and its placeholder check works inside Claude Code (#11). `check.sh` has committed fault tests (#10). 0.5.0 (#15) makes every question an MCQ. Open: #3, #8, and #7 (waiting on a budget, D006).
 
 ## Phases
 
@@ -39,7 +39,9 @@ The only current record of where things stand. Update it at the end of every wor
 - PR #17 merged as `a0a4c90`.
 - **LinkedIn prep:** a fresh install from GitHub works (VERIFIED). Vith will post with a screen recording, calling v-start early so strangers become the #3 testers.
 - **#18 (D007):** the private project names come out of every file and, next, the whole git history. Guarantee 5's list moved to a gitignored `.private-names` and the `PRIVATE_NAMES` secret. The README says what you need. The reference projects moved to Vith's `CLAUDE.local.md`.
-- **Next:** merge the #18 PR, rewrite the history and force-push, edit #1, #6 and #12, send the GitHub Support request, then add the repo topics. Then #8, #3, and #7 once there's a budget.
+- PR #19 merged. **History rewritten** with `git filter-repo` and force-pushed by Vith (`main` is now `cf8fca1`). The 7 old branches are deleted, and a fresh clone has no names. A backup bundle of the old history is outside the repo, at `~/v-start-history-backup-2026-11-06.bundle`. Issues #1, #6 and #12 are edited. The repo topics are claude-code, claude-code-plugin and ai-agents.
+- **No GitHub Support request** (D008, Vith's call). Old PR pages can still show the old diffs. Vith can delete the old revisions of #1, #6 and #12 from each issue's "edited" menu.
+- **Next:** Vith's LinkedIn post with a screen recording. Then #8, #3, and #7 once there's a budget.
 
 ### 5 Nov 2026 — v-start built, released and used on itself (Vith)
 

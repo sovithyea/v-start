@@ -33,6 +33,7 @@ What has been observed, how, and when. Anything not observed goes under Unverifi
 | `claude plugin eval` runs each case 3 times plus a no-plugin baseline by default. `--runs`, `--ablation none` and `--max-cost-usd` change that | `claude plugin eval --help` (CLI 2.1.318) | 6 Nov |
 | A fresh install from GitHub (`claude plugin marketplace add sovithyea/v-start`, then `install`) gives 0.5.0 on a clean config | `CLAUDE_CONFIG_DIR` set to an empty scratch folder | 6 Nov |
 | Guarantee 5 scans the whole repo and prints file names only, never the name. It reads `PRIVATE_NAMES`, falling back to `.private-names` when the variable is empty or only whitespace. It skips with a notice when there's no list, but fails when `REQUIRE_PRIVATE_NAMES=true`. A bad pattern fails with grep's own error. `check-faults.sh` covers each case with made-up names. On PR #19's CI it ran with the secret | `bash tools/check-faults.sh`; the PR #19 guarantees log shows no "skipped" line | 6 Nov |
+| After the history rewrite, a fresh clone of GitHub has 39 commits and none names the private projects, in files or messages. `main` is the only branch. Issues #1, #6 and #12 no longer name them. The installed plugin's marketplace copy is on the new history | `git clone`, then a case-insensitive search of `git log --all -p`; `git ls-remote --heads`; `gh api` on each issue; `git -C ~/.claude/plugins/marketplaces/v-start log` | 6 Nov |
 | On a GitHub runner: `claude plugin validate` works without signing in, gitleaks scanned 6 commits and found no leaks, and the commit check passed | PR #4 CI logs (runs 41946092639, 41946092598, 41946092593) | 5 Nov |
 
 ## Unverified
@@ -43,6 +44,7 @@ What has been observed, how, and when. Anything not observed goes under Unverifi
 - Round 1b's search of the folders next to the repo (`find ..`): in the #6 headless trial, Claude Code blocked `find` outside the working folder, so it fell back to asking "None / I'll type a path". An interactive run should ask permission instead. Not seen yet.
 - Sonnet 5.5 at about $0.35 and Haiku 5.5 at about $0.02 per `/v-start` run: estimates that assume Opus's token counts and turns.
 - Whether CI can use a Claude subscription instead of a paid API key.
+- Old commits stay reachable from GitHub's cached views and PR pages, because GitHub Support isn't being asked (D008). Also not checked: whether the edit history of issues #1, #6 and #12 still shows the old bodies.
 
 ## Corrections
 
