@@ -7,7 +7,7 @@ description: Week 0 discovery for a v-start project. Read the real thing (existi
 
 Learn what's really there before writing spec 1. Every claim gets a source; nothing here is written from memory (hard rule 3). It's all read-only.
 
-**Ask every choice as AskUserQuestion multiple choice**, in as many rounds as needed, with the recommended option first. Keep the prose short.
+**Ask every choice as AskUserQuestion multiple choice**, in as many rounds as needed, with the recommended option first. Keep the prose short. **Never write a question in a reply**: if it needs an answer, it's an MCQ. **Get everything before you choose**: ask until you have every answer a choice needs. If AskUserQuestion isn't available or returns an error, put the questions under **Open** in `docs/PRD.md` instead of listing them.
 
 ## 1. Read the ledgers
 

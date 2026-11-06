@@ -27,12 +27,15 @@ What has been observed, how, and when. Anything not observed goes under Unverifi
 | The skill's exact step-4 command, run in a Claude Code Bash call, finds 49 placeholders in the unfilled templates. `check.sh` fails if step 4 goes back to plain `grep` or uses a different pattern, and still passes on a Helm-style `{{ x` | The command copied from SKILL.md, run on a fresh copy of the templates; self-test of `check.sh` on a scratch copy | 6 Nov |
 | Inside Claude Code, a check that prints leftovers catches an unlisted `{{SURPRISE}}` planted in a template, and prints nothing once they're filled. This trial ran an earlier, shorter pattern with plain `grep`; the merged `command grep` version was checked by the row above, not by a trial | Headless trial with the planted placeholder; the check's output read from the stream-json log | 6 Nov |
 | `tools/check-faults.sh` passes all 18 cases (a clean copy, 14 faults, 3 harmless changes). It reports a fault whose change matched nothing. Deleting any one of the 8 checks in `check.sh` makes it fail | `bash tools/check-faults.sh`; a scratch copy with one fault's change broken; each check removed in turn from a scratch copy of `check.sh` | 6 Nov |
+| In a headless run with most answers missing, `/v-start` wrote no questions in its final reply. It put 12 open items under Open in `docs/PRD.md` as TBD, marked "to be asked as MCQs in the next live session", and still filled every placeholder | Headless trial in a scratch folder; final reply and `docs/PRD.md` read after the run | 6 Nov |
+| With no question tool, headless `/v-spec` wrote no questions in its reply and put 9 in the spec's Open questions table. Headless `/v-discover` did the same with 8, under Open in `docs/PRD.md`. Neither picked an answer | Headless trials on the trial project; final replies, the spec and `docs/PRD.md` read after each run | 6 Nov |
 | On a GitHub runner: `claude plugin validate` works without signing in, gitleaks scanned 6 commits and found no leaks, and the commit check passed | PR #4 CI logs (runs 41946092639, 41946092598, 41946092593) | 5 Nov |
 
 ## Unverified
 
 - The four stack preset CI files haven't run on a real PR yet.
 - A friend's first run.
+- That refresh mode asks the Open `TBD` items in a live session (added after the headless trial, which can't ask).
 - Round 1b's search of the folders next to the repo (`find ..`): in the #6 headless trial, Claude Code blocked `find` outside the working folder, so it fell back to asking "None / I'll type a path". An interactive run should ask permission instead. Not seen yet.
 
 ## Corrections
