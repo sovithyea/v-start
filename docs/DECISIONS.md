@@ -16,7 +16,7 @@ The contract. One entry per decision. The **why** matters most: it's what gets f
 
 A Claude Code plugin that starts any project with a proven agent harness and personalises it to the person and the project.
 
-**Why:** Vith wants future projects to start faster, using what already worked in an earlier project, an earlier project, an earlier project and an earlier project, and wants to give it to others.
+**Why:** Vith wants future projects to start faster, using what already worked in Vith's earlier projects, and wants to give it to others.
 
 ## D002 — A Claude Code plugin on GitHub, public
 
@@ -68,3 +68,14 @@ v-start ships as a plugin from `sovithyea/v-start`, installed with `/plugin mark
 When #7 is built, the behaviour test runs `claude plugin eval --model claude-sonnet-5-5 --runs 1 --ablation none` (plus `--max-cost-usd`, set from the cap), only on PRs that touch `skills/`, with 3 cases: a new project, adopt mode, and a headless run with open questions. [Inference] That's about $1.04 per trigger, estimated from Opus token counts; the first real run measures it. **No money is spent yet:** #7 waits until Vith sets a monthly cap.
 
 **Why:** an Opus 5.5 run measured $0.55–0.60 (VERIFIED). [Inference] Sonnet 5.5 would cost about 40% less at its list prices, if it uses the same tokens. Running only when `skills/` changes, with 1 run per case, keeps a busy day to about 4 triggers. Vith picked each of these from multiple-choice options, and chose "not yet" for the cap. (#7)
+
+## D007 — Private project names come out of the repo and its history
+
+*6 Nov 2026 · Vith*
+
+- Every current file and every commit stops naming Vith's earlier private projects and local folder paths. They become "my earlier projects" or similar.
+- **One-off exception to hard rule 4:** D001's "Why" was reworded to drop the names. Its meaning is unchanged. No other entry was rewritten.
+- History is rewritten with `git filter-repo` and force-pushed, and the old remote branches are deleted, as part 2 of #18 once the current files are clean. GitHub Support is then asked to remove cached PR views.
+- Guarantee 5's list of names moved out of the repo, into a gitignored `.private-names` file and the `PRIVATE_NAMES` CI secret. Without it, the check skips with a notice, except on this repo's own CI, where a missing secret fails. A hit prints file names only, so a name never reaches a public CI log.
+
+**Why:** v-start is being shared publicly. Vith chose a full scrub over leaving the names in old files and commits. (#18)

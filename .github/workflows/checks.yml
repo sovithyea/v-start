@@ -21,5 +21,9 @@ jobs:
         run: npx --yes @anthropic-ai/claude-code@2.1.318 plugin validate .
       - name: 2 to 5. placeholders, licenses, installs, private context
         run: bash tools/check.sh
+        env:
+          PRIVATE_NAMES: ${{ secrets.PRIVATE_NAMES }}
+          # Only this repo's own pushes and PRs get secrets: forks and Dependabot never do.
+          REQUIRE_PRIVATE_NAMES: ${{ github.repository == 'sovithyea/v-start' && github.actor != 'dependabot[bot]' && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) }}
       - name: each check still catches its fault
         run: bash tools/check-faults.sh
