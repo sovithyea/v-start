@@ -114,3 +114,12 @@ v-start will be submitted to the Claude plugin directory at claude.ai/directory/
 - The portal's other findings stay as they are, and a note for the reviewer explains each one. They are: `gh` using the user's own GitHub login for github.com, the icon path named in the docs, the pinned gstack clone-and-setup, and the root `CLAUDE.md`.
 
 **Why:** the portal put a credential hold on the Azure section, because it read the user's Azure token and sent it to visualstudio.com, and v-start is GitHub-only. The other findings are either the same vendor (GitHub's own login going to GitHub), documentation, or an install already pinned and asked about (D004). The portal says a reviewer clears those. (#23)
+
+## D012 — The listing's links, keywords and privacy statement
+
+*6 Nov 2026 · Vith*
+
+- `plugin.json` sets `displayName` to `v-start`, so the directory doesn't show "V Start". It also sets keywords (claude-code, project-setup, ai-agents, spec-driven, workflow, harness) and six links. Homepage and repository go to the GitHub repo, documentation to the README, and support to GitHub issues. Privacy goes to `PRIVACY.md`, and terms to the MIT `LICENSE`.
+- `PRIVACY.md` is Vith's statement to users, approved word for word. v-start collects nothing, has no telemetry and no servers, and uses the user's own tools and accounts only after they say yes. Those tools are git, `gh`, the plugin installer and `npx`. The CI files it writes download gitleaks.
+
+**Why:** the portal's Listing details step showed the name as "V Start" and "Links: 0 of 6 filled in". It reads all of these from `plugin.json`. (#23)
