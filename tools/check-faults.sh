@@ -51,8 +51,10 @@ fault "private name in a template" "private project names" "echo 'Quokka Works' 
 fault "owner's folder in README" "private project names" "echo '~/Desktop/hideout' >> README.md"
 fault "list in .private-names (blank line, CRLF)" "private project names" "printf '\\n[Zz]ebracorn\\r\\n' > .private-names && echo 'Zebracorn' >> README.md" "PRIVATE_NAMES="
 fault "no list on this repo's own CI" "the PRIVATE_NAMES secret is missing" "true" "PRIVATE_NAMES= REQUIRE_PRIVATE_NAMES=true"
+fault "private name in the docs" "private project names" "mkdir -p docs && echo 'From Zebracorn.' >> docs/PROGRESS.md"
+fault "list file is never scanned" pass "printf '[Zz]ebracorn\\n' > .private-names" "PRIVATE_NAMES="
 fault "plain English" pass "echo 'A zebra in the corn.' >> README.md"
-fault "scanned folder missing" "the private-context scan failed" "rm -rf .claude-plugin"
+fault "bad pattern in the list" "the private-context scan failed" "true" "PRIVATE_NAMES=(unbalanced"
 
 # A hit must name the file, never print the matching line, so CI logs stay clean.
 rm -rf "$work/r" && mkdir "$work/r" && cp -R "$repo/skills" "$repo/.claude-plugin" "$repo/README.md" "$repo/THIRD_PARTY.md" "$work/r/"
@@ -60,6 +62,12 @@ echo 'Quokka Works' >> "$work/r/README.md"
 out=$(bash "$repo/tools/check.sh" "$work/r" 2>&1)
 if grep -q 'README.md' <<<"$out" && ! grep -q 'Quokka' <<<"$out"; then echo "ok    a hit prints the file, not the name"
 else echo "FAIL  a hit prints the file, not the name"; bad=1; fi
+
+# A secret that is only whitespace must fall back to .private-names.
+rm -rf "$work/r" && mkdir "$work/r" && cp -R "$repo/skills" "$repo/.claude-plugin" "$repo/README.md" "$repo/THIRD_PARTY.md" "$work/r/"
+printf '[Zz]ebracorn\n' > "$work/r/.private-names"; echo 'Zebracorn' >> "$work/r/README.md"
+out=$(PRIVATE_NAMES='  ' bash "$repo/tools/check.sh" "$work/r" 2>&1)
+grep -qF "private project names" <<<"$out" && echo "ok    whitespace-only secret uses the file" || { echo "FAIL  whitespace-only secret uses the file"; bad=1; }
 
 # With no list at all, guarantee 5 must say it skipped, and the rest must still pass.
 rm -rf "$work/r" && mkdir "$work/r" && cp -R "$repo/skills" "$repo/.claude-plugin" "$repo/README.md" "$repo/THIRD_PARTY.md" "$work/r/"
