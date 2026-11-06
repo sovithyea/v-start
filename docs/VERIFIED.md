@@ -44,7 +44,7 @@ What has been observed, how, and when. Anything not observed goes under Unverifi
 - Round 1b's search of the folders next to the repo (`find ..`): in the #6 headless trial, Claude Code blocked `find` outside the working folder, so it fell back to asking "None / I'll type a path". An interactive run should ask permission instead. Not seen yet.
 - Sonnet 5.5 at about $0.35 and Haiku 5.5 at about $0.02 per `/v-start` run: estimates that assume Opus's token counts and turns.
 - Whether CI can use a Claude subscription instead of a paid API key.
-- That old commits are gone from GitHub's cached views and PR pages, and from the edit history of issues #1, #6 and #12. That needs GitHub Support (request drafted, sent by Vith).
+- Old commits stay reachable from GitHub's cached views and PR pages, because GitHub Support isn't being asked (D008). Also not checked: whether the edit history of issues #1, #6 and #12 still shows the old bodies.
 
 ## Corrections
 

@@ -40,7 +40,7 @@ The only current record of where things stand. Update it at the end of every wor
 - **LinkedIn prep:** a fresh install from GitHub works (VERIFIED). Vith will post with a screen recording, calling v-start early so strangers become the #3 testers.
 - **#18 (D007):** the private project names come out of every file and, next, the whole git history. Guarantee 5's list moved to a gitignored `.private-names` and the `PRIVATE_NAMES` secret. The README says what you need. The reference projects moved to Vith's `CLAUDE.local.md`.
 - PR #19 merged. **History rewritten** with `git filter-repo` and force-pushed by Vith (`main` is now `cf8fca1`). The 7 old branches are deleted, and a fresh clone has no names. A backup bundle of the old history is outside the repo, at `~/v-start-history-backup-2026-11-06.bundle`. Issues #1, #6 and #12 are edited. The repo topics are claude-code, claude-code-plugin and ai-agents.
-- **Waiting on Vith:** send the GitHub Support request, to remove the cached views, the PR refs and the old issue-edit revisions.
+- **No GitHub Support request** (D008, Vith's call). Old PR pages can still show the old diffs. Vith can delete the old revisions of #1, #6 and #12 from each issue's "edited" menu.
 - **Next:** Vith's LinkedIn post with a screen recording. Then #8, #3, and #7 once there's a budget.
 
 ### 5 Nov 2026 — v-start built, released and used on itself (Vith)
