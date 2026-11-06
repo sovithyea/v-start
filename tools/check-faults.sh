@@ -11,7 +11,8 @@ export PRIVATE_NAMES='[Zz]ebracorn|Quokka ?Works|Desktop/hideout'
 
 sums() { (cd "$work/r" && find . -type f -exec cksum {} + | sort | cksum); }
 
-# fault NAME EXPECT CHANGE: EXPECT is text check.sh must print, or "pass" when CHANGE is harmless.
+# fault NAME EXPECT CHANGE [ENV]: EXPECT is text check.sh must print, or "pass" when CHANGE is harmless.
+# ENV (optional) is VAR=value pairs for check.sh.
 fault() {
   rm -rf "$work/r" && mkdir "$work/r" &&
     cp -R "$repo/skills" "$repo/.claude-plugin" "$repo/README.md" "$repo/THIRD_PARTY.md" "$work/r/" ||
@@ -19,7 +20,7 @@ fault() {
   before=$(sums)
   (cd "$work/r" && eval "$3")
   if [ "$3" != true ] && [ "$(sums)" = "$before" ]; then echo "FAIL  $1 (the change matched nothing)"; bad=1; return; fi
-  out=$(bash "$repo/tools/check.sh" "$work/r" 2>&1); rc=$?
+  out=$(env ${4:-} bash "$repo/tools/check.sh" "$work/r" 2>&1); rc=$?
   if [ "$2" = pass ]; then [ $rc -eq 0 ]; else [ $rc -ne 0 ] && grep -qF -- "$2" <<<"$out"; fi && { echo "ok    $1"; return; }
   echo "FAIL  $1 (exit $rc, expected: $2)"; bad=1
 }
@@ -48,8 +49,17 @@ fault "gstack commit check gone" "gstack pin differs" "perl -pi -e 's/ && git -C
 fault "private name in a skill" "private project names" "echo 'Used in Zebracorn.' >> skills/v-spec/SKILL.md"
 fault "private name in a template" "private project names" "echo 'Quokka Works' >> skills/v-start/templates/AGENTS.md"
 fault "owner's folder in README" "private project names" "echo '~/Desktop/hideout' >> README.md"
+fault "list in .private-names (blank line, CRLF)" "private project names" "printf '\\n[Zz]ebracorn\\r\\n' > .private-names && echo 'Zebracorn' >> README.md" "PRIVATE_NAMES="
+fault "no list on this repo's own CI" "the PRIVATE_NAMES secret is missing" "true" "PRIVATE_NAMES= REQUIRE_PRIVATE_NAMES=true"
 fault "plain English" pass "echo 'A zebra in the corn.' >> README.md"
-fault "scanned folder missing" "couldn't read" "rm -rf .claude-plugin"
+fault "scanned folder missing" "the private-context scan failed" "rm -rf .claude-plugin"
+
+# A hit must name the file, never print the matching line, so CI logs stay clean.
+rm -rf "$work/r" && mkdir "$work/r" && cp -R "$repo/skills" "$repo/.claude-plugin" "$repo/README.md" "$repo/THIRD_PARTY.md" "$work/r/"
+echo 'Quokka Works' >> "$work/r/README.md"
+out=$(bash "$repo/tools/check.sh" "$work/r" 2>&1)
+if grep -q 'README.md' <<<"$out" && ! grep -q 'Quokka' <<<"$out"; then echo "ok    a hit prints the file, not the name"
+else echo "FAIL  a hit prints the file, not the name"; bad=1; fi
 
 # With no list at all, guarantee 5 must say it skipped, and the rest must still pass.
 rm -rf "$work/r" && mkdir "$work/r" && cp -R "$repo/skills" "$repo/.claude-plugin" "$repo/README.md" "$repo/THIRD_PARTY.md" "$work/r/"
