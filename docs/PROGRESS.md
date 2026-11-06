@@ -33,7 +33,7 @@ The only current record of where things stand. Update it at the end of every wor
 - **#10:** `tools/check-faults.sh` copies the repo, breaks each guarantee in turn, and fails unless `check.sh` prints that check's own message. CI runs it. Deleting any check makes it fail.
 - Writing the fault tests found one more silent exit in `check.sh`: with no fill table, `set -e` stopped it before its message. Fixed.
 - PR #14 (#10) merged as `d94e74e`.
-- **#15 (D005), version 0.5.0:** Vith asked that every question be an MCQ, never text in a reply, and that no choice be made before every answer it needs is in. Both rules are now in `/v-start`, `/v-spec`, `/v-discover` and the project template. A run that can't ask puts its questions under Open in `docs/PRD.md`, and refresh mode asks those first. The headless trial showed no questions in the reply and 12 TBDs in PRD Open.
+- **#15 (D005), version 0.5.0:** Vith asked that every question be an MCQ, never text in a reply, and that no choice be made before every answer it needs is in. Both rules are now in `/v-start`, `/v-spec`, `/v-discover` and the project template. A run that can't ask puts its questions under Open in `docs/PRD.md`, and refresh mode asks those first. Headless trials of all three commands showed no questions in the reply. The open questions went to PRD Open, or for `/v-spec` to the spec's Open questions table.
 - **Next:** merge the #15 PR. Then #7 (behaviour tests, needs a yes on cost), #8 (icon, Vith picks) and #3 (a friend's first run).
 
 ### 5 Nov 2026 — v-start built, released and used on itself (Vith)
