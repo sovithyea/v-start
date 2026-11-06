@@ -3,7 +3,7 @@ name: pr-screenshots
 description: 'Embed before/after screenshots and annotated images in pull request descriptions. Covers PR description patterns, image upload for GitHub, and sizing best practices.'
 ---
 
-<!-- From github/awesome-copilot (MIT). Modified for v-start: the Azure DevOps upload section is removed. -->
+<!-- From github/awesome-copilot (MIT). Modified for v-start, see THIRD_PARTY.md and D011. -->
 
 # PR Screenshots
 

@@ -105,3 +105,12 @@ v-start's icon is a dark terminal window showing `/v` and a coral cursor, on a b
 v-start will be submitted to the Claude plugin directory at claude.ai/directory/manage, under the permanent name `v-start`, from the repo root of `sovithyea/v-start`. The listing's short description is the plain-language one now in `plugin.json`. Vith submits, because the portal needs Vith's paid account and Vith's own answers to its data-handling and compliance questions.
 
 **Why:** Vith asked to list it. The name stays `v-start` because it matches the command, the repo and the install lines in the LinkedIn post. The portal fixes the name, the repo and the icon (D009) on submission. (#23)
+
+## D011 — Modify the bundled pr-screenshots skill, and leave the other portal holds for review
+
+*6 Nov 2026 · Vith*
+
+- The Azure DevOps upload section is removed from v-start's copy of `skills/pr-screenshots` (from github/awesome-copilot, MIT). `THIRD_PARTY.md` marks it as modified. Anyone re-syncing it from upstream must leave that section out.
+- The portal's other findings stay as they are, and a note for the reviewer explains each one. They are: `gh` using the user's own GitHub login for github.com, the icon path named in the docs, the pinned gstack clone-and-setup, and the root `CLAUDE.md`.
+
+**Why:** the portal put a credential hold on the Azure section, because it read the user's Azure token and sent it to visualstudio.com, and v-start is GitHub-only. The other findings are either the same vendor (GitHub's own login going to GitHub), documentation, or an install already pinned and asked about (D004). The portal says a reviewer clears those. (#23)

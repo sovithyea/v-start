@@ -2,7 +2,7 @@
 
 The only current record of where things stand. Update it at the end of every working session.
 
-**Last updated:** 6 Nov 2026 (evening). **v-start is announced on LinkedIn.** 0.5.1 is released and installed, with the plugin icon (#8, D009). 0.5.2, ready for the plugin directory, is in PR #24 (#23, D010). Since 0.5.0 it asks before installing companion tools (#5), ships no private context (#6, #18), its placeholder check works inside Claude Code (#11), and every question is an MCQ (#15). `check.sh` has committed fault tests (#10). Open: #3 (now fed by the post) and #7 (waiting on a budget, D006).
+**Last updated:** 6 Nov 2026 (evening). **v-start is announced on LinkedIn.** 0.5.2 is released and installed: ready for the plugin directory (#23, D010), with an icon (#8, D009). 0.5.3 (PR #25, D011) removes the bundled Azure DevOps upload that the portal held. Since 0.5.0 it asks before installing companion tools (#5), ships no private context (#6, #18), its placeholder check works inside Claude Code (#11), and every question is an MCQ (#15). `check.sh` has committed fault tests (#10). Open: #3 (now fed by the post) and #7 (waiting on a budget, D006).
 
 ## Phases
 
@@ -43,7 +43,7 @@ The only current record of where things stand. Update it at the end of every wor
 - **No GitHub Support request** (D008, Vith's call). Old PR pages can still show the old diffs. Vith can delete the old revisions of #1, #6 and #12 from each issue's "edited" menu.
 - **Posted on LinkedIn** by Vith, with a screenshot of the repo and a caption, instead of a video. Five video drafts were made and then deleted.
 - **Next:** treat feedback from people who try it after the post as #3 (the first outside run). Log what they hit in VERIFIED and new issues. Then #7 once there's a budget.
-- **#23 (D010):** ready for the directory. The plain-language description is in both manifests, and the directory check passes. Version 0.5.2. The portal's checks raised 2 policy holds for human review. The Azure DevOps upload in `pr-screenshots`, which read the user's Azure token, is removed (0.5.3). The other findings stay, with a note for the reviewer. **Waiting on Vith:** submit at claude.ai/directory/manage.
+- **#23 (D010):** ready for the directory. The plain-language description is in both manifests, and the directory check passes. Version 0.5.2, merged as PR #24. The portal's checks raised 2 policy holds for human review. The Azure DevOps upload in `pr-screenshots`, which read the user's Azure token, is removed (0.5.3). The other findings stay, with a note for the reviewer. **Waiting on Vith:** submit at claude.ai/directory/manage.
 - **#8 (D009):** the plugin icon is a terminal showing `/v` on a blue-to-violet gradient, picked by Vith from three drafts. The ICON_MISSING warning is gone. Version 0.5.1.
 
 ### 5 Nov 2026 — v-start built, released and used on itself (Vith)
