@@ -65,6 +65,6 @@ v-start ships as a plugin from `sovithyea/v-start`, installed with `/plugin mark
 
 *6 Nov 2026 · Vith*
 
-When #7 is built, the behaviour test runs `claude plugin eval` on Claude Sonnet 5.5, only on PRs that touch `skills/`, with 3 cases (a new project, adopt mode, and a headless run with open questions), 1 run each and no baseline arm. That's about $1.04 per trigger. **No money is spent yet:** #7 waits until Vith sets a monthly cap.
+When #7 is built, the behaviour test runs `claude plugin eval --model claude-sonnet-5-5 --runs 1 --ablation none` (plus `--max-cost-usd`, set from the cap), only on PRs that touch `skills/`, with 3 cases: a new project, adopt mode, and a headless run with open questions. [Inference] That's about $1.04 per trigger, estimated from Opus token counts; the first real run measures it. **No money is spent yet:** #7 waits until Vith sets a monthly cap.
 
-**Why:** an Opus 5.5 run measured $0.55–0.60 (VERIFIED). Sonnet 5.5 is estimated at about 40% less, and it's what most users' agents run. Running only when `skills/` changes, with 1 run per case, keeps a busy day to about 4 triggers. Vith chose "not yet" for the cap. (#7)
+**Why:** an Opus 5.5 run measured $0.55–0.60 (VERIFIED). [Inference] Sonnet 5.5 would cost about 40% less at its list prices, if it uses the same tokens. Running only when `skills/` changes, with 1 run per case, keeps a busy day to about 4 triggers. Vith picked each of these from multiple-choice options, and chose "not yet" for the cap. (#7)
