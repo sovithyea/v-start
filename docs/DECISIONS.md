@@ -60,3 +60,11 @@ v-start ships as a plugin from `sovithyea/v-start`, installed with `/plugin mark
 - The project template carries both rules. A person who picked "chat" in round 0 still gets a short list; the v-start commands always use MCQ.
 
 **Why:** Vith, 6 Nov 2026: "claude sometimes replies back with a bunch of non mcq questions in the outputs, these should be mcq questions" and "never make a choice without getting all u need to build it". This extends D003's "every choice is asked as multiple choice". (#15)
+
+## D006 — The CI behaviour test's shape, and no spend yet
+
+*6 Nov 2026 · Vith*
+
+When #7 is built, the behaviour test runs `claude plugin eval` on Claude Sonnet 5.5, only on PRs that touch `skills/`, with 3 cases (a new project, adopt mode, and a headless run with open questions), 1 run each and no baseline arm. That's about $1.04 per trigger. **No money is spent yet:** #7 waits until Vith sets a monthly cap.
+
+**Why:** an Opus 5.5 run measured $0.55–0.60 (VERIFIED). Sonnet 5.5 is estimated at about 40% less, and it's what most users' agents run. Running only when `skills/` changes, with 1 run per case, keeps a busy day to about 4 triggers. Vith chose "not yet" for the cap. (#7)
