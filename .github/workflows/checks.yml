@@ -23,7 +23,7 @@ jobs:
         run: bash tools/check.sh
         env:
           PRIVATE_NAMES: ${{ secrets.PRIVATE_NAMES }}
-          # Forks never get secrets, so only this repo's own pushes and PRs must have the list.
-          REQUIRE_PRIVATE_NAMES: ${{ github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository }}
+          # Only this repo's own pushes and PRs get secrets: forks and Dependabot never do.
+          REQUIRE_PRIVATE_NAMES: ${{ github.repository == 'sovithyea/v-start' && github.actor != 'dependabot[bot]' && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) }}
       - name: each check still catches its fault
         run: bash tools/check-faults.sh
