@@ -123,3 +123,5 @@ v-start will be submitted to the Claude plugin directory at claude.ai/directory/
 - `PRIVACY.md` is Vith's statement to users, approved word for word. v-start collects nothing, has no telemetry and no servers, and uses the user's own tools and accounts only after they say yes. Those tools are git, `gh`, the plugin installer and `npx`. The CI files it writes download gitleaks.
 
 **Why:** the portal's Listing details step showed the name as "V Start" and "Links: 0 of 6 filled in". It reads all of these from `plugin.json`. (#23)
+
+**Status:** on 6 Nov, Vith approved a fuller `PRIVACY.md`. It adds the PyPI, Playwright and CI package downloads, and the README's "Data and privacy" table matches it (PR #27). The decision stands.

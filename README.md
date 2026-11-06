@@ -81,14 +81,14 @@ To install gstack by hand at the pinned release (if anything fails, the clone is
 
 ## Data and privacy
 
-v-start collects nothing, and it has no servers or telemetry. With your yes, it uses your own tools and accounts to reach these services:
+v-start collects nothing, and it has no servers or telemetry. It uses your own tools and accounts to reach these services:
 
 | Service | When | What goes there |
 |---|---|---|
-| GitHub, through `gh` | You choose to create the repo, labels, board or first issue | Your project's files and those items, under your GitHub account |
-| npm, through `npx` | You choose to scaffold a stack | Package downloads |
+| GitHub, through `gh` | You choose to create the repo, labels, board or first issue | Your project's files and those items, under your account |
 | GitHub | You choose to install helper tools (gstack, impeccable, ponytail) | Downloads of those tools |
-| GitHub Actions | The CI files it adds run in your repo | A gitleaks download, to scan for secrets |
+| npm, PyPI, Playwright | You pick a stack, or use the screenshot and recording skills | Package and browser downloads |
+| GitHub Actions | On every push, once you add the CI files | gitleaks, your stack's packages, Playwright's browser for Next.js |
 
 Everything else stays in your project. See [PRIVACY.md](PRIVACY.md).
 
