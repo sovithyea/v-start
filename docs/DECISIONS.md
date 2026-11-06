@@ -120,6 +120,6 @@ v-start will be submitted to the Claude plugin directory at claude.ai/directory/
 *6 Nov 2026 · Vith*
 
 - `plugin.json` sets `displayName` to `v-start`, so the directory doesn't show "V Start". It also sets keywords (claude-code, project-setup, ai-agents, spec-driven, workflow, harness) and six links. Homepage and repository go to the GitHub repo, documentation to the README, and support to GitHub issues. Privacy goes to `PRIVACY.md`, and terms to the MIT `LICENSE`.
-- `PRIVACY.md` is Vith's statement to users, approved word for word. v-start collects nothing, has no telemetry and no servers, and uses the user's own tools and accounts only after they say yes.
+- `PRIVACY.md` is Vith's statement to users, approved word for word. v-start collects nothing, has no telemetry and no servers, and uses the user's own tools and accounts only after they say yes. Those tools are git, `gh`, the plugin installer and `npx`. The CI files it writes download gitleaks.
 
 **Why:** the portal's Listing details step showed the name as "V Start" and "Links: 0 of 6 filled in". It reads all of these from `plugin.json`. (#23)
