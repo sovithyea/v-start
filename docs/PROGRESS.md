@@ -2,7 +2,7 @@
 
 The only current record of where things stand. Update it at the end of every working session.
 
-**Last updated:** 6 Nov 2026 (evening). **v-start is announced on LinkedIn.** 0.5.2 is ready for the plugin directory (#23, D010), with an icon (#8, D009). 0.5.0 is installed: it asks before installing companion tools (#5), ships no private context (#6, #18), its placeholder check works inside Claude Code (#11), and every question is an MCQ (#15). `check.sh` has committed fault tests (#10). Open: #3 (now fed by the post) and #7 (waiting on a budget, D006).
+**Last updated:** 6 Nov 2026 (evening). **v-start is announced on LinkedIn.** 0.5.1 is released and installed, with the plugin icon (#8, D009). 0.5.2, ready for the plugin directory, is in PR #24 (#23, D010). Since 0.5.0 it asks before installing companion tools (#5), ships no private context (#6, #18), its placeholder check works inside Claude Code (#11), and every question is an MCQ (#15). `check.sh` has committed fault tests (#10). Open: #3 (now fed by the post) and #7 (waiting on a budget, D006).
 
 ## Phases
 

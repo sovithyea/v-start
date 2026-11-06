@@ -102,6 +102,6 @@ v-start's icon is a dark terminal window showing `/v` and a coral cursor, on a b
 
 *6 Nov 2026 · Vith*
 
-v-start is submitted to the Claude plugin directory at claude.ai/directory/manage, under the permanent name `v-start`, from the repo root of `sovithyea/v-start`. The listing's short description is the plain-language one now in `plugin.json`. Vith submits, because the portal needs Vith's paid account and Vith's own answers to its data-handling and compliance questions.
+v-start will be submitted to the Claude plugin directory at claude.ai/directory/manage, under the permanent name `v-start`, from the repo root of `sovithyea/v-start`. The listing's short description is the plain-language one now in `plugin.json`. Vith submits, because the portal needs Vith's paid account and Vith's own answers to its data-handling and compliance questions.
 
 **Why:** Vith asked to list it. The name stays `v-start` because it matches the command, the repo and the install lines in the LinkedIn post. The portal fixes the name, the repo and the icon (D009) on submission. (#23)
